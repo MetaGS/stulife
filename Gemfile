@@ -22,6 +22,8 @@ gem 'rails_12factor', group: :production
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
+gem 'omniauth-facebook'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
