@@ -1,17 +1,22 @@
 .row
   .col-md-6.col-md-offset-3
-    %h2 Sign In
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .form-group
-        = f.label :email
-        = f.email_field :email, autofocus: true, class: "form-control"
-      .form-group
-        = f.label :password
-        = f.password_field :password, autocomplete: "off", class: "form-control"
-      - if devise_mapping.rememberable?
+    - if notice
+      .alert.alert-info= notice
+    - if alert
+      .alert.alert-danger= alert
+    .well
+      %h2 Admin Login
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .form-group
-          = f.check_box :remember_me
-          = f.label :remember_me
-      .form-group
-        = f.submit "Sign In", class: "btn btn-primary"
-        = render "users/shared/links"
+          = f.label :email
+          = f.email_field :email, autofocus: true, class: "form-control"
+        .form-group
+          = f.label :password
+          = f.password_field :password, autocomplete: "off", class: "form-control"
+        - if devise_mapping.rememberable?
+          .form-group
+            = f.check_box :remember_me
+            = f.label :remember_me
+        .form-group
+          = f.submit "Login", class: "btn btn-primary"
+          = render "admins/shared/links"
