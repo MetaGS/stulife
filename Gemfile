@@ -23,6 +23,7 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
 gem 'omniauth-facebook'
+gem 'globalize', '~> 5.0.0'
 
 group :development, :test do
   gem 'byebug'
