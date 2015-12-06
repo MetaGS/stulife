@@ -15,4 +15,5 @@ Access the staging website at [myStudent](http://my-student.herokuapp.com)
 Access the admin panel at [myStudent Admin](http://my-student.herokuapp.com/admin)
 
 **Admin Access**
+
 Use your own email and password is random1234.
