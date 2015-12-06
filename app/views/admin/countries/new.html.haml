@@ -1,0 +1,10 @@
+%h1 New Country
+
+= form_for [:admin, @country] do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, required: true, class: "form-control"
+
+  .form-group
+    = link_to "Back", admin_countries_path, class: "btn btn-default"
+    = f.submit "Submit", class: "btn btn-primary"

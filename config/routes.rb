@@ -6,9 +6,12 @@ Rails.application.routes.draw do
     devise_for :admins, path: "/admin"
 
     root to: 'pages#home'
-  end
 
-  namespace :admin do
-    root to: 'admin#dashboard'
+    namespace :admin do
+      root to: 'admin#dashboard'
+
+      resources :countries
+      resources :universities
+    end
   end
 end

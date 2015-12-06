@@ -1,0 +1,15 @@
+%h1 Countries
+.text-center
+  = link_to "New Country", new_admin_country_path, class: "btn btn-default btn-lg"
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th
+
+  %tbody
+    - @countries.each do |country|
+      %tr
+        %td= country.name
+        %td= link_to "Edit", edit_admin_country_path(country), class: "btn btn-default"
