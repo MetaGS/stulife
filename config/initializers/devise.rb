@@ -236,7 +236,12 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, "1647002915567460", "bdd378466992bb35caceb431120b157e"
+  if Rails.env == "production"
+    config.omniauth :facebook, "1647546812179737", ENV['FB_APP_SECRET']
+  else
+    config.omniauth :facebook, "1647002915567460", "bdd378466992bb35caceb431120b157e"
+  end
+
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
