@@ -1,0 +1,18 @@
+%h1 Universities
+
+.text-center
+  = link_to "New University", new_admin_university_path, class: "btn btn-default btn-lg"
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th
+
+  %tbody
+    - @universities.each do |university|
+      %tr
+        %td= university.name
+        %td= simple_format university.description
+        %td= link_to "Edit", edit_admin_university_path(university), class: "btn btn-default"
