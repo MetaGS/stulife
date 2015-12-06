@@ -2,7 +2,7 @@
 
 An education guide platform for international students pursuing studies overseas.
 
-## Featueres ##
+## Features ##
 
 * Login via Facebook - Completed
 * Multi-language support - Completed
@@ -17,3 +17,7 @@ Access the admin panel at [myStudent Admin](http://my-student.herokuapp.com/admi
 **Admin Access**
 
 Use your own email and password is random1234.
+
+## I18n ##
+
+I18n means internationalization. Admin can create and edit data for multiple language. To do so, just change the language at the language bar on top while you are browsing, creating or editing data. (Only for CPanel)
