@@ -11,4 +11,8 @@ class University < ActiveRecord::Base
   translates :name, :description
 
   validates_presence_of :name, :description
+
+  def description
+    self[:description] || ""
+  end
 end

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
     root to: 'pages#home'
 
+    post '/tinymce_assets' => 'tinymce_assets#create'
+
     namespace :admin do
       root to: 'admin#dashboard'
 

@@ -12,7 +12,7 @@
     = javascript_include_tag 'admin/admin', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-  %body
+  %body{"data-no-turbolink" => true}
     = render 'layouts/admin/header'
     .container-fluid
       .container

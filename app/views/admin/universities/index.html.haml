@@ -14,5 +14,5 @@
     - @universities.each do |university|
       %tr
         %td= university.name
-        %td= simple_format university.description
+        %td= university.description.html_safe
         %td= link_to "Edit", edit_admin_university_path(university), class: "btn btn-default"
