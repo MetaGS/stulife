@@ -1,9 +1,14 @@
 %h1 New Country
 
 = form_for [:admin, @country] do |f|
+  = validation_errors @country, "country", "created"
   .form-group
     = f.label :name
     = f.text_field :name, required: true, class: "form-control"
+
+  .form-group
+    = f.label :slug
+    = f.text_field :slug, required: true, class: "form-control"
 
   .form-group
     = link_to "Back", admin_countries_path, class: "btn btn-default"

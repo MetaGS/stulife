@@ -8,7 +8,7 @@ class Admin::CountriesController < Admin::AdminController
   end
 
   def create
-    @country = Country.new(params[:country].permit(:name))
+    @country = Country.new(country_params)
 
     if @country.save
       redirect_to admin_countries_path, notice: "Country created successfully."
@@ -24,7 +24,7 @@ class Admin::CountriesController < Admin::AdminController
   def update
     @country = Country.find_by_id(params[:id])
 
-    if @country.update(params[:country].permit(:name))
+    if @country.update(country_params)
       redirect_to admin_countries_path, notice: "Country updated successfully."
     else
       render :edit
@@ -33,5 +33,11 @@ class Admin::CountriesController < Admin::AdminController
 
   def destroy
     
+  end
+
+  private
+
+  def country_params
+    params[:country].permit(:name)
   end
 end

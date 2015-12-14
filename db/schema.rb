@@ -35,9 +35,12 @@ ActiveRecord::Schema.define(version: 20151209145809) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "countries", force: :cascade do |t|
+    t.string   "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "countries", ["slug"], name: "index_countries_on_slug", using: :btree
 
   create_table "country_translations", force: :cascade do |t|
     t.integer  "country_id", null: false
