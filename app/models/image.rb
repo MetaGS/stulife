@@ -20,4 +20,18 @@ class Image < ActiveRecord::Base
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_presence :image
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
+  include Rails.application.routes.url_helpers
+
+  def to_jq_upload
+    {
+        "id" => read_attribute(:id),
+        "name" => read_attribute(:image_file_name),
+        "size" => read_attribute(:image_file_size),
+        "originalUrl" => image.url(:original),
+        "thumbnailUrl" => image.url(:thumb),
+        "deleteUrl" => admin_image_path(self, locale: ""),
+        "deleteType" => "delete"
+    }
+  end
 end

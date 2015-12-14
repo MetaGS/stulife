@@ -12,7 +12,11 @@
 class University < ActiveRecord::Base
   translates :name, :description
 
-  validates_presence_of :name, :description
+  has_many :images, as: :imageable
+
+  belongs_to :country
+
+  validates_presence_of :name, :slug, :country, :description
 
   def description
     self[:description] || ""
