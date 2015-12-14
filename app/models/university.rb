@@ -3,6 +3,8 @@
 # Table name: universities
 #
 #  id         :integer          not null, primary key
+#  slug       :string
+#  country_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

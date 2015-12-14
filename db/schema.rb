@@ -63,9 +63,14 @@ ActiveRecord::Schema.define(version: 20151209145809) do
   add_index "course_translations", ["locale"], name: "index_course_translations_on_locale", using: :btree
 
   create_table "courses", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "slug"
+    t.integer  "university_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
+
+  add_index "courses", ["slug"], name: "index_courses_on_slug", using: :btree
+  add_index "courses", ["university_id"], name: "index_courses_on_university_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.string   "name"
@@ -93,14 +98,26 @@ ActiveRecord::Schema.define(version: 20151209145809) do
   add_index "page_region_translations", ["page_region_id"], name: "index_page_region_translations_on_page_region_id", using: :btree
 
   create_table "page_regions", force: :cascade do |t|
+    t.string   "controller"
+    t.string   "action"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "page_regions", ["action"], name: "index_page_regions_on_action", using: :btree
+  add_index "page_regions", ["controller"], name: "index_page_regions_on_controller", using: :btree
+  add_index "page_regions", ["name"], name: "index_page_regions_on_name", using: :btree
+
   create_table "universities", force: :cascade do |t|
+    t.string   "slug"
+    t.integer  "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "universities", ["country_id"], name: "index_universities_on_country_id", using: :btree
+  add_index "universities", ["slug"], name: "index_universities_on_slug", using: :btree
 
   create_table "university_translations", force: :cascade do |t|
     t.integer  "university_id", null: false
