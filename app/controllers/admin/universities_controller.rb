@@ -38,6 +38,6 @@ class Admin::UniversitiesController < Admin::AdminController
   private
 
   def university_params
-    params[:university].permit(:name, :slug, :country_id, :description)
+    params[:university].permit(:name, :slug, :country_id, :description, :featured_image_id)
   end
 end

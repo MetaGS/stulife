@@ -115,8 +115,9 @@ ActiveRecord::Schema.define(version: 20151209145809) do
   create_table "universities", force: :cascade do |t|
     t.string   "slug"
     t.integer  "country_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "featured_image_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_index "universities", ["country_id"], name: "index_universities_on_country_id", using: :btree

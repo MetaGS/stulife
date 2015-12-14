@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
       resources :countries
       resources :universities
+      resources :images
     end
   end
 end
