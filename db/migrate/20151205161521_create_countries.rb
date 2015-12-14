@@ -1,6 +1,7 @@
 class CreateCountries < ActiveRecord::Migration
   def up
     create_table :countries do |t|
+      t.string :slug, index: true
       t.timestamps null: false
     end
     Country.create_translation_table! :name => :string
