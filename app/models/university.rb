@@ -14,6 +14,7 @@ class University < ActiveRecord::Base
   translates :name, :description
 
   has_many :images, as: :imageable
+  has_many :courses
 
   belongs_to :country
 
