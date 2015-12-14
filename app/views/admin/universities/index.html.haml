@@ -6,13 +6,15 @@
 %table.table
   %thead
     %tr
+      %th ID
       %th Name
-      %th Description
+      %th Slug
       %th
 
   %tbody
     - @universities.each do |university|
       %tr
+        %td= university.id
         %td= university.name
-        %td= university.description.html_safe
+        %td= university.slug
         %td= link_to "Edit", edit_admin_university_path(university), class: "btn btn-default"
