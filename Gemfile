@@ -28,6 +28,7 @@ gem 'omniauth-facebook'
 gem 'globalize', '~> 5.0.0'
 gem 'tinymce-rails'
 gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
+gem 'friendly_id', '~> 5.1.0'
 
 group :development, :test do
   gem 'byebug'
