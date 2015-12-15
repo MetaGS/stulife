@@ -1,4 +1,6 @@
 class Admin::UniversitiesController < Admin::AdminController
+  before_action :set_university, only: [:edit, :destroy]
+
   def index
     @universities = University.all
   end
@@ -18,12 +20,10 @@ class Admin::UniversitiesController < Admin::AdminController
   end
 
   def edit
-    @university = University.find_by_id(params[:id])
+
   end
 
   def update
-    @university = University.find_by_id(params[:id])
-
     if @university.update(university_params)
       redirect_to admin_universities_path, notice: "University updated succesfully."
     else
@@ -36,6 +36,10 @@ class Admin::UniversitiesController < Admin::AdminController
   end
 
   private
+
+  def set_university
+    @university = University.friendly.find(params[:id])
+  end
 
   def university_params
     params[:university].permit(:name, :slug, :country_id, :description, :featured_image_id)

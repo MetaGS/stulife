@@ -13,6 +13,9 @@
 class University < ActiveRecord::Base
   translates :name, :description
 
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   has_many :images, as: :imageable
   has_many :courses
 

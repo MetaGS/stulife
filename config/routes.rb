@@ -13,7 +13,9 @@ Rails.application.routes.draw do
       root to: 'admin#dashboard'
 
       resources :countries
-      resources :universities
+      resources :universities do
+        resources :courses
+      end
       resources :images
     end
   end
