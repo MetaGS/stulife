@@ -6,12 +6,13 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand{:href => root_path} myStudent
+      %a.navbar-brand{:href => "/"} myStudent
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav
-        %li.active= link_to "Home", root_path
-        %li= link_to "About", root_path
-        %li= link_to "Contact", root_path
+        %li.active= link_to "Malaysia", root_path(country: "malaysia")
+        %li= link_to "University", universities_path
+        %li= link_to "House", root_path
+        %li= link_to "Car", root_path
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li.dropdown

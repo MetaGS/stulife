@@ -1,0 +1,40 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    %title MyStudent
+    = stylesheet_link_tag    'landing', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'landing', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    #fb-root
+    - if Rails.env == "production"
+      :javascript
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '1647546812179737',
+            xfbml      : true,
+            version    : 'v2.5'
+          });
+        };
+
+        (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+    - else
+      :javascript
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1647002915567460";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+    = yield
