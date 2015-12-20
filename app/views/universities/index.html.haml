@@ -19,9 +19,21 @@
 
       %hr.short
 
-      #universities
-        - @universities.each do |university|
-          %p= university.name
+      #universities.row
+        %ul.portfolio-list.sort-destination{"data-sort-id" => "portfolio"}
+          - @universities.each do |university|
+            %li.col-sm-6.col-xs-12.isotope-item.websites
+              .portfolio-item
+                %a{:href => university_path(university)}
+                  %span.thumb-info
+                    %span.thumb-info-wrapper
+                      %img.img-responsive{:alt => "", :src => image_url(university.featured_image.image.url(:medium))}
+                        %span.thumb-info-title
+                          %span.thumb-info-inner= university.name
+                          %span.thumb-info-type University College
+                        %span.thumb-info-action
+                          %span.thumb-info-action-icon
+                            %i.fa.fa-link
 
 - if current_admin
   :javascript
