@@ -13,9 +13,6 @@ class ApplicationController < ActionController::Base
 
   def set_country
     @country = Country.find_by_slug(params[:country])
-    if !params[:country] && !request.path.include?("/admin")
-      redirect_to root_path(country: "malaysia")
-    end
   end
 
   def default_url_options(options = {})

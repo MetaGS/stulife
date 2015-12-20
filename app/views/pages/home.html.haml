@@ -1,6 +1,28 @@
 = render 'slider'
 
 .container.mt-xlg
-  .row.center
-    .col-md-12
-      %h1 #{@country.name}
+  = editable_section("about-country")
+
+- if current_admin
+  :javascript
+    tinymce.init({
+        selector: '#about-country',
+        inline: true,
+        plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table contextmenu paste save'
+        ],
+        toolbar: 'insertfile save undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        save_onsavecallback: function () {
+            // console.log('Saved');
+            $.ajax({
+                method: 'PUT',
+                url: '/admin/save_page_region?country_id=' + #{@country.id} + '&name=' + tinyMCE.activeEditor.id + '&content=' + encodeURIComponent(tinyMCE.activeEditor.getContent())
+            }).done(function (msg) {
+                alert('Content saved.');
+            }).fail(function (msg) {
+                alert('Content failed to save, please contact web administrator.');
+            });
+        }
+    });

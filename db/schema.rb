@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20151209145809) do
   add_index "page_region_translations", ["page_region_id"], name: "index_page_region_translations_on_page_region_id", using: :btree
 
   create_table "page_regions", force: :cascade do |t|
+    t.integer  "country_id"
     t.string   "controller"
     t.string   "action"
     t.string   "name"
@@ -110,6 +111,7 @@ ActiveRecord::Schema.define(version: 20151209145809) do
 
   add_index "page_regions", ["action"], name: "index_page_regions_on_action", using: :btree
   add_index "page_regions", ["controller"], name: "index_page_regions_on_controller", using: :btree
+  add_index "page_regions", ["country_id"], name: "index_page_regions_on_country_id", using: :btree
   add_index "page_regions", ["name"], name: "index_page_regions_on_name", using: :btree
 
   create_table "universities", force: :cascade do |t|

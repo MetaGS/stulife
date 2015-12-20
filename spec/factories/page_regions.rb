@@ -3,6 +3,7 @@
 # Table name: page_regions
 #
 #  id         :integer          not null, primary key
+#  country_id :integer
 #  controller :string
 #  action     :string
 #  name       :string
