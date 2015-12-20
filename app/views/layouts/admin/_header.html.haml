@@ -9,6 +9,7 @@
       %a.navbar-brand{:href => admin_root_path} myStudent CPanel
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav
+        = navbar_item("Website", root_path)
         = navbar_item("Dashboard", admin_root_path)
         = navbar_item("Countries", admin_countries_path)
         = navbar_item("Universities", admin_universities_path)
