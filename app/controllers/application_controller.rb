@@ -13,13 +13,13 @@ class ApplicationController < ActionController::Base
 
   def set_country
     @country = Country.find_by_slug(params[:country])
-    unless params[:country]
+    if !params[:country] && !request.path.include?("/admin")
       redirect_to root_path(country: "malaysia")
     end
   end
 
   def default_url_options(options = {})
-    { locale: I18n.locale, country: "malaysia" }.merge options
+    { locale: I18n.locale, country: params[:country] }.merge options
   end
 
   private
