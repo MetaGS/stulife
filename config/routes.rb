@@ -4,18 +4,16 @@ Rails.application.routes.draw do
   get '/', to: "pages#landing"
 
   scope "(:locale)", locale: /en|cn|my/ do
+    devise_for :users, skip: :omniauth_callbacks, path: "/account"
+    devise_for :admins, path: "/admin"
 
     scope ":country", country: /malaysia/ do
-      devise_for :users, skip: :omniauth_callbacks, path: "/account"
-
       root to: "pages#home"
 
       resources :universities, only: [:index, :show]
 
       post '/tinymce_assets' => 'tinymce_assets#create'
     end
-
-    devise_for :admins, path: "/admin"
 
     namespace :admin do
       root to: 'admin#dashboard'
