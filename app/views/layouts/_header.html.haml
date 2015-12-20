@@ -1,33 +1,74 @@
-%nav.navbar.navbar-default.navbar-fixed-top
-  .container
-    .navbar-header
-      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.navbar-brand{:href => "/"} myStudent
-    #navbar.navbar-collapse.collapse
-      %ul.nav.navbar-nav
-        %li.active= link_to "Malaysia", root_path(country: "malaysia")
-        %li= link_to "University", universities_path
-        %li= link_to "House", root_path
-        %li= link_to "Car", root_path
-      %ul.nav.navbar-nav.navbar-right
-        - if user_signed_in?
-          %li.dropdown
-            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              Welcome #{current_user.name}
-              %span.caret
-            -#%ul.dropdown-menu
-              %li= link_to "My Profile", edit_user_registration_path
-              %li.divider{:role => "separator"}
-              %li.dropdown-header Nav header
-              %li
-                %a{:href => "#"} Separated link
-              %li
-                %a{:href => "#"} One more separated link
-          %li= link_to "Sign Out", destroy_user_session_path, method: :delete
-        - else
-          %li= link_to "Register", new_user_registration_path
-          %li= link_to "Sign In", new_user_session_path
+%header#header{"data-plugin-options" => "{\"stickyEnabled\": true, \"stickyEnableOnBoxed\": true, \"stickyEnableOnMobile\": true, \"stickyStartAt\": 57, \"stickySetTop\": \"-57px\", \"stickyChangeLogo\": true}"}
+  .header-body
+    .header-container.container
+      .header-row
+        .header-column
+          .header-logo
+            %a{:href => root_path}
+              %img{:alt => "myStudent", "data-sticky-height" => "70", "data-sticky-top" => "30", "data-sticky-width" => "143", :height => "76", :src => image_url("img/logo.png"), :width => "155"}
+        .header-column
+          .header-row
+            .header-search.hidden-xs
+              %form#searchForm{:action => "javascript:;", :method => "get"}
+                .input-group
+                  %input#q.form-control{:name => "q", :placeholder => "Search...", :required => "", :type => "text"}
+                    %span.input-group-btn
+                      %button.btn.btn-default{:type => "submit"}
+                        %i.fa.fa-search
+            %nav.header-nav-top
+              %ul.nav.nav-pills
+                %li.hidden-xs
+                  %a{:href => "javascript:;"}
+                    %i.fa.fa-angle-right
+                    About Us
+                %li.hidden-xs
+                  %a{:href => "javascript:;"}
+                    %i.fa.fa-angle-right
+                    Contact Us
+                %li
+                  %a#dropdownLanguage.dropdown-menu-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#"}
+                    %img.flag.flag-us{:alt => "English", :src => image_url("img/blank.gif")}/
+                    English
+                    %i.fa.fa-angle-down
+                  %ul.dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownLanguage"}
+                    %li
+                      %a{:href => root_path(locale: "en")}
+                        %img.flag.flag-us{:alt => "English", :src => image_url("img/blank.gif")}/
+                        English
+                -#%li.hidden-xs
+                  %span.ws-nowrap
+                    %i.fa.fa-phone
+                    (123) 456-789
+          .header-row
+            .header-nav
+              %button.btn.header-btn-collapse-nav{"data-target" => ".header-nav-main", "data-toggle" => "collapse"}
+                %i.fa.fa-bars
+              %ul.header-social-icons.social-icons.hidden-xs
+                %li.social-icons-facebook
+                  %a{:href => "http://www.facebook.com/", :target => "_blank", :title => "Facebook"}
+                    %i.fa.fa-facebook
+                %li.social-icons-twitter
+                  %a{:href => "http://www.twitter.com/", :target => "_blank", :title => "Twitter"}
+                    %i.fa.fa-twitter
+                %li.social-icons-linkedin
+                  %a{:href => "http://www.linkedin.com/", :target => "_blank", :title => "Linkedin"}
+                    %i.fa.fa-linkedin
+              .header-nav-main.header-nav-main-effect-1.header-nav-main-sub-effect-1.collapse
+                %nav
+                  %ul#mainNav.nav.nav-pills
+                    %li.dropdown
+                      %a.dropdown-toggle{:href => root_path}
+                        Home
+                      %ul.dropdown-menu
+                        %li
+                          %a{:href => root_path}
+                            Overview
+                    %li
+                      %a{:href => universities_path}
+                        University
+                    %li
+                      %a{:href => root_path}
+                        House
+                    %li
+                      %a{:href => root_path}
+                        Car

@@ -1,0 +1,70 @@
+%footer#footer
+  .container
+    .row
+      .footer-ribbon
+        %span Get in Touch
+      .col-md-3
+        .newsletter
+          %h4 Newsletter
+          %p Keep up on our latest news and updates. Enter your e-mail and subscribe to our newsletter.
+          #newsletterSuccess.alert.alert-success.hidden
+            %strong Success!
+            You've been added to our email list.
+          #newsletterError.alert.alert-danger.hidden
+          %form#newsletterForm{:action => "php/newsletter-subscribe.php", :method => "POST"}
+            .input-group
+              %input#newsletterEmail.form-control{:name => "newsletterEmail", :placeholder => "Email Address", :type => "text"}
+                %span.input-group-btn
+                  %button.btn.btn-default{:type => "submit"} Go!
+      .col-md-3
+        %h4 Latest Tweets
+        #tweet.twitter{"data-plugin-options" => "{\"username\": \"\", \"count\": 2}", "data-plugin-tweets" => ""}
+          %p Please wait...
+      .col-md-4
+        .contact-details
+          %h4 Contact Us
+          %ul.contact
+            %li
+              %p
+                %i.fa.fa-map-marker
+                %strong Address:
+                88, Taman Medan Putra, Bandar Manjalara, Kepong, Kuala Lumpur, Malaysia
+            %li
+              %p
+                %i.fa.fa-phone
+                %strong Phone:
+                (60) 3-8888 8888
+            %li
+              %p
+                %i.fa.fa-envelope
+                %strong Email:
+                %a{:href => "javascript:;"} support@mystudent.com
+      .col-md-2
+        %h4 Follow Us
+        %ul.social-icons
+          %li.social-icons-facebook
+            %a{:href => "http://www.facebook.com/", :target => "_blank", :title => "Facebook"}
+              %i.fa.fa-facebook
+          %li.social-icons-twitter
+            %a{:href => "http://www.twitter.com/", :target => "_blank", :title => "Twitter"}
+              %i.fa.fa-twitter
+          %li.social-icons-linkedin
+            %a{:href => "http://www.linkedin.com/", :target => "_blank", :title => "Linkedin"}
+              %i.fa.fa-linkedin
+  .footer-copyright
+    .container
+      .row
+        .col-md-1
+          %a.logo{:href => root_path}
+            %img.img-responsive{:alt => "myStudent", :src => image_url("img/logo-footer.png")}
+        .col-md-7
+          %p © Copyright myStudent 2016. All Rights Reserved.
+        .col-md-4
+          %nav#sub-menu
+            %ul
+              %li
+                %a{:href => "javascript:;"} FAQ's
+              %li
+                %a{:href => "javascript:;"} Sitemap
+              %li
+                %a{:href => "javascript:;"} Contact
