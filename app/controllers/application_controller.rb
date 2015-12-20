@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options(options = {})
-    { locale: I18n.locale, country: params[:country] || "malaysia" }.merge options
+    { locale: I18n.locale, country: params[:country] }.merge options
   end
 
   private
@@ -29,7 +29,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_sign_in_path_for(resource_or_scope)
+    case resource.class.name
+      when "Admin" then admin_root_path
+      when "User" then root_path(country: "malaysia")
+    end
+  end
+
   def after_sign_out_path_for(resource_or_scope)
-    root_path(country: "malaysia")
+    root_path(country: params[:country])
   end
 end
