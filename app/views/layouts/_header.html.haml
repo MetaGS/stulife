@@ -72,3 +72,20 @@
                     %li
                       %a{:href => root_path}
                         Car
+
+                    - if current_user
+                      %li.dropdown
+                        %a.dropdown-toggle{:href => edit_user_registration_path}
+                          = current_user.name
+                        %ul.dropdown-menu
+                          %li= link_to "My Account", edit_user_registration_path
+                          %li= link_to "Logout", destroy_user_session_path, method: :delete
+                    - else
+                      %li= link_to "Sign In", new_user_session_path
+
+                    - if current_admin
+                      %li.dropdown
+                        %a.dropdown-toggle{:href => admin_root_path}
+                          CPanel
+                        %ul.dropdown-menu
+                          %li= link_to "Logout", destroy_admin_session_path, method: :delete
