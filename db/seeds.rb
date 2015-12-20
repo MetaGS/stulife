@@ -7,4 +7,4 @@ Country.create(name: "Malaysia", slug: "malaysia")
 University.create(name: "Taylor's University", slug: "taylor-university", country: Country.where(name: "Malaysia").first, description: "Welcome to Taylor's University")
 
 PageRegion.create(country: Country.first, controller: "pages", action: "home", name: "about-country", content: "Malaysia")
-PageRegion.create(country: Country.first, controller: "universities", action: "index", name: "how-to-come-to-country", content: "How to Come")
+PageRegion.create(country: Country.first, controller: "universities", action: "index", name: "how-to-come", content: "How to Come")

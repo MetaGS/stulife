@@ -9,4 +9,4 @@ Rails.application.config.assets.paths << "#{Rails.root}/vendor/assets/plugins/..
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( admin/admin.css admin/admin.js landing.css landing.js)
+Rails.application.config.assets.precompile += %w( admin/admin.css admin/admin.js landing.css landing.js modernizr/modernizr.min.js)
