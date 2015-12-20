@@ -1,5 +1,5 @@
 class Admin::UniversitiesController < Admin::AdminController
-  before_action :set_university, only: [:edit, :destroy]
+  before_action :set_university, only: [:edit, :update, :destroy]
 
   def index
     @universities = University.all
