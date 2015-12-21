@@ -5,5 +5,6 @@ class UniversitiesController < ApplicationController
 
   def show
     @university = University.friendly.find(params[:id])
+    @courses = @university.courses
   end
 end

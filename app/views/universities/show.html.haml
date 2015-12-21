@@ -35,6 +35,29 @@
                 = succeed "," do
                   %a{:href => "#"} Brand
                 %a{:href => "#"} Design
-      %h4.heading-primary
-        = @university.name
+      %h2.heading-primary
+        Overview
       %p.mt-xlg= @university.description.try(:html_safe)
+
+  %section.section.section-default.section-with-divider
+    .divider.divider-solid.divider-style-1
+      %i.fa.fa-chevron-down
+    .container
+      .row
+        .col-md-12
+          %h2.text-center Courses
+          %table.table.table-hover
+            %thead
+              %tr
+                %th Name
+                %th Duration
+                %th Requirement
+                %th.col-md-2
+
+            %tbody
+              - @courses.each do |course|
+                %tr
+                  %td= course.name
+                  %td
+                  %td
+                  %td= link_to "View More", university_course_path(@university, course), class: "btn btn-default"
