@@ -1,1 +1,20 @@
 %h1 List of Courses for #{@university.name}
+
+.text-center
+  = link_to "New Course", new_admin_university_course_path(@university), class: "btn btn-lg btn-default"
+
+%table.table
+  %thead
+    %tr
+      %th ID
+      %th Name
+      %th
+
+  %tbody
+    - @courses.each do |course|
+      %tr
+        %td= course.id
+        %td= course.name
+        %td
+          = link_to "Edit", edit_admin_university_course_path(@university, course), class: "btn btn-default"
+          = link_to "Delete", admin_university_courses_path(@university, course), data: {confirm: "Are you sure?"}, class: "btn btn-danger"
