@@ -1,0 +1,40 @@
+%section.page-header
+  .container
+    .row
+      .col-md-12
+        %ul.breadcrumb
+          %li
+            %a{:href => root_path}= @country.name
+          %li.active= controller_name.to_s.titlecase
+    .row
+      .col-md-12
+        %h1= @university.name
+
+.container
+  .row
+    .col-md-4.text-center
+      .owl-carousel.owl-theme{"data-plugin-options" => "{\"items\": 1, \"margin\": 10}"}
+        - @university.images.each do |image|
+          %div
+            %span.img-thumbnail
+              %img.img-responsive{:alt => "taylor-university", :src => image_url(image.image.url(:medium))}
+    .col-md-8
+      .portfolio-info
+        .row
+          .col-md-12.center
+            %ul
+              %li
+                %a{"data-original-title" => "Like", "data-tooltip" => "", :href => "#"}
+                  %i.fa.fa-heart>
+                  14
+              -#%li
+                %i.fa.fa-calendar
+                21 November 2013
+              -#%li
+                %i.fa.fa-tags
+                = succeed "," do
+                  %a{:href => "#"} Brand
+                %a{:href => "#"} Design
+      %h4.heading-primary
+        = @university.name
+      %p.mt-xlg= @university.description.try(:html_safe)

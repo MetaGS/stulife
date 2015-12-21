@@ -1,0 +1,28 @@
+%section.page-header
+  .container
+    .row
+      .col-md-12
+        %ul.breadcrumb
+          %li
+            %a{:href => root_path}= @country.name
+          %li.active= controller_name.to_s.titlecase
+    .row
+      .col-md-12
+        %h1= @university.name
+
+.container
+  .row
+    .col-md-12
+      .portfolio-title
+        .row
+          .portfolio-nav-all.col-md-1
+            %a{"data-original-title" => "Back to list", "data-tooltip" => "", :href => "portfolio-single-project.html"}
+              %i.fa.fa-th
+          .col-md-10.center
+            %h2.mb-none= @course.name
+          .portfolio-nav.col-md-1
+            %a.portfolio-nav-prev{"data-original-title" => "Previous", "data-tooltip" => "", :href => "portfolio-single-project.html"}
+              %i.fa.fa-chevron-left
+            %a.portfolio-nav-next{"data-original-title" => "Next", "data-tooltip" => "", :href => "portfolio-single-project.html"}
+              %i.fa.fa-chevron-right
+      %hr.tall
