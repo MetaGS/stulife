@@ -16,7 +16,7 @@
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'plugins/modernizr/modernizr.min'
-    - if current_admin
+    - if current_admin && params.has_key?(:edit)
       = javascript_include_tag 'tinymce', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
@@ -68,5 +68,29 @@
       ga('create', 'UA-12345678-1', 'auto');
       ga('send', 'pageview');
 
-    - if Rails.env == "development"
+    - if current_admin && params.has_key?(:edit)
+      :javascript
+        tinymce.init({
+            selector: '.editable',
+            inline: true,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table contextmenu paste save'
+            ],
+            toolbar: 'insertfile save undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            save_onsavecallback: function () {
+                // console.log('Saved');
+                $.ajax({
+                    method: 'PUT',
+                    url: '/admin/save_page_region?country_id=' + '#{@country.id}' + '&name=' + tinyMCE.activeEditor.id + '&content=' + encodeURIComponent(tinyMCE.activeEditor.getContent())
+                }).done(function (msg) {
+                    alert('Content saved.');
+                }).fail(function (msg) {
+                    alert('Content failed to save, please contact web administrator.');
+                });
+            }
+        });
+
+    -# if Rails.env == "development"
       = console

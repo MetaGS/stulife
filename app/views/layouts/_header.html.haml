@@ -88,4 +88,5 @@
                         %a.dropdown-toggle{:href => admin_root_path, target: "_blank"}
                           CPanel
                         %ul.dropdown-menu
+                          %li= link_to "Edit Page", url_for(edit: "")
                           %li= link_to "Logout", destroy_admin_session_path, method: :delete

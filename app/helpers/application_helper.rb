@@ -3,7 +3,7 @@ module ApplicationHelper
     javascript_include_tag 'tinymce'
     if current_admin
       content_tag :form do
-        content_tag :div, id: section_id, class: classes do
+        content_tag :div, id: section_id, class: classes.to_s + "editable" do
           PageRegion.find_by_country_id_and_name(@country.id, section_id).content.try(:html_safe)
         end
       end
