@@ -25,7 +25,7 @@ class Admin::UniversitiesController < Admin::AdminController
 
   def update
     if @university.update(university_params)
-      redirect_to admin_universities_path, notice: "University updated succesfully."
+      redirect_to edit_admin_university_path(@university), notice: "University updated succesfully."
     else
       render :new
     end
