@@ -4,11 +4,10 @@
     %meta{:charset => "utf-8"}
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
-    %title MyStudent
+    %title= full_title(yield(:title))
     %meta{:content => "", :name => "keywords"}
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
-
     %link{:href => "img/favicon.ico", :rel => "shortcut icon", :type => "image/x-icon"}
     %link{:href => "img/apple-touch-icon.png", :rel => "apple-touch-icon"}
     %meta{:content => "width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no", :name => "viewport"}

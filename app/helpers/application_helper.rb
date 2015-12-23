@@ -1,4 +1,15 @@
 module ApplicationHelper
+  def full_title(page_title)
+    home_title = "myStudent - Education Platform"
+    base_title = "myStudent"
+
+    if page_title.empty?
+      home_title
+    else
+      "#{page_title} - #{base_title}"
+    end
+  end
+
   def editable_section(section_id, classes = nil)
     javascript_include_tag 'tinymce'
     if current_admin

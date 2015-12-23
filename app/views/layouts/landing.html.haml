@@ -4,7 +4,10 @@
     %meta{:charset => "utf-8"}
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
-    %title MyStudent
+    %title= full_title(yield(:title))
+    %meta{:content => "", :name => "keywords"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
     = stylesheet_link_tag    'landing', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
