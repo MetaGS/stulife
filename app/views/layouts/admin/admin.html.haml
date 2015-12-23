@@ -36,10 +36,17 @@
           'advlist autolink lists link image charmap print preview hr anchor pagebreak',
           'searchreplace wordcount visualblocks visualchars code fullscreen',
           'insertdatetime media nonbreaking save table contextmenu directionality',
-          'emoticons template paste textcolor colorpicker textpattern imagetools uploadimage imagegallery'
+          'emoticons template paste textcolor colorpicker textpattern imagetools uploadimage codemirror'
         ],
-        toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image uploadimage imagegallery',
+        toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image uploadimage code',
         toolbar2: 'print preview media | forecolor backcolor emoticons',
+        codemirror: {
+          indentOnInit: true,
+          path: '/codemirror-4.8',
+          config: {
+            lineNumbers: true
+          }
+        },
         image_advtab: true,
         //templates: [
         //  { title: 'Test template 1', content: 'Test 1' },

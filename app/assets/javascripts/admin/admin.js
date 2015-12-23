@@ -4,6 +4,7 @@
 //= require bootstrap
 
 //= require tinymce
+//= require tinymce_assets
 
 //= require plugins/jquery-file-upload/js/vendor/jquery.ui.widget
 //= require plugins/jquery-file-upload/js/vendor/tmpl.min
