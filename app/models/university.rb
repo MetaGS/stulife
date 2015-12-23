@@ -28,6 +28,6 @@ class University < ActiveRecord::Base
   end
 
   def featured_image
-    Image.find_by_imageable_type_and_imageable_id_and_id('University', id, self[:featured_image_id])
+    Image.find_by_imageable_type_and_imageable_id_and_id('University', id, self[:featured_image_id]) || images.first
   end
 end

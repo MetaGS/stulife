@@ -31,7 +31,7 @@
                 %a{:href => university_path(university)}
                   %span.thumb-info
                     %span.thumb-info-wrapper
-                      %img.img-responsive{:alt => "", :src => image_url(university.featured_image.image.url(:medium))}
+                      %img.img-responsive{:alt => "", :src => (image_url(university.featured_image.image.url(:medium)) if university.featured_image)}
                         %span.thumb-info-title
                           %span.thumb-info-inner= university.name
                           %span.thumb-info-type University College
