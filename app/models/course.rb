@@ -19,4 +19,10 @@ class Course < ActiveRecord::Base
 
   validates_presence_of :university, :name, :description
   validates :name, :slug, uniqueness: { scope: :university_id, message: "should be unique for the university" }
+
+  def similar_courses
+    f1 = Course.where.not(id: self)
+    words = self.name.downcase.strip.split.uniq
+    f1.with_translations.where('lower(name) ~ ?', words.join('|'))
+  end
 end
