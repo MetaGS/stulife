@@ -30,6 +30,14 @@ gem 'tinymce-rails'
 gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 gem 'friendly_id', '~> 5.1.0'
 
+group :development do
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
+end
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
