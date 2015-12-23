@@ -7,14 +7,14 @@ Rails.application.routes.draw do
     devise_for :users, skip: :omniauth_callbacks, path: "/account"
     devise_for :admins, path: "/admin"
 
+    post '/tinymce_assets' => 'tinymce_assets#create'
+
     scope ":country", country: /malaysia/ do
       root to: "pages#home"
 
       resources :universities, only: [:index, :show] do
         resources :courses, only: [:index, :show]
       end
-
-      post '/tinymce_assets' => 'tinymce_assets#create'
     end
 
     namespace :admin do
