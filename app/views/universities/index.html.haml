@@ -10,10 +10,12 @@
       %aside#sidebar.sidebar{"data-plugin-options" => "{\"minWidth\": 991, \"containerSelector\": \".container\", \"padding\": {\"top\": 110}}", "data-plugin-sticky" => ""}
         %h4.heading-primary Malaysia
         %ul.nav.nav-list.mb-xl.show-bg-active
-          %li.active
+          %li
             %a{"data-hash" => "", "data-hash-offset" => "85", :href => "#how-to-come"} Studying in Malaysia
           %li
             %a{"data-hash" => "", "data-hash-offset" => "85", :href => "#universities"} Universities
+          %li
+            %a{"data-hash" => "", "data-hash-offset" => "85", :href => "#reviews"} Reviews
     .col-md-9
       = editable_section "how-to-come"
 
@@ -34,3 +36,11 @@
                         %span.thumb-info-action
                           %span.thumb-info-action-icon
                             %i.fa.fa-link
+
+      %section#reviews.section.section-default.section-with-divider
+        .divider.divider-solid.divider-style-1
+          %i.fa.fa-chevron-down
+        .row
+          .col-md-12
+            %h2.text-center Reviews
+            .fb-comments{"data-href" => request.url, "data-numposts" => "5", "data-width" => "100%"}

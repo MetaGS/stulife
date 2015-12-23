@@ -61,3 +61,12 @@
                   %td
                   %td
                   %td= link_to "View More", university_course_path(@university, course), class: "btn btn-default"
+
+  %section.section.section-default.section-with-divider
+    .divider.divider-solid.divider-style-1
+      %i.fa.fa-chevron-down
+    .container
+      .row
+        .col-md-12
+          %h2.text-center Reviews
+          .fb-comments{"data-href" => request.url, "data-numposts" => "5", "data-width" => "100%"}
