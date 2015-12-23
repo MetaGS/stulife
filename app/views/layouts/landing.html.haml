@@ -6,7 +6,6 @@
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
     %title MyStudent
     = stylesheet_link_tag    'landing', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'landing', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
     #fb-root
@@ -38,3 +37,4 @@
         }(document, 'script', 'facebook-jssdk'));
 
     = yield
+    = javascript_include_tag 'landing', 'data-turbolinks-track' => true

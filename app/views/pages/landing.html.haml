@@ -1,15 +1,113 @@
-#background
-  .text-container
-    #shader
-    #logo
-      myStudent
-      -#.subtitle Malaysia
-    .modules
+.body.coming-soon
+  %header#header{"data-plugin-options" => "{\"stickyEnabled\": false}"}
+    .header-body
+      .header-top
+        .container
+          %p
+            Get in touch!
+            %span.ml-xs
+              %i.fa.fa-phone
+              (60) 12 345-6789
+            %span.hidden-xs
+              |
+              %a{:href => "#"} support@mystudent.com
+          %ul.header-social-icons.social-icons.hidden-xs
+            %li.social-icons-facebook
+              %a{:href => "http://www.facebook.com/", :target => "_blank", :title => "Facebook"}
+                %i.fa.fa-facebook
+            %li.social-icons-twitter
+              %a{:href => "http://www.twitter.com/", :target => "_blank", :title => "Twitter"}
+                %i.fa.fa-twitter
+            %li.social-icons-linkedin
+              %a{:href => "http://www.linkedin.com/", :target => "_blank", :title => "Linkedin"}
+                %i.fa.fa-linkedin
+  .main{:role => "main"}
+    .container
+      .row
+        .col-md-12.center
+          .logo
+            %a{:href => "/"}
+              %img{:alt => "myStudent", :src => image_url("img/logo.png")}
+      .row
+        .col-md-12
+          %hr.tall
+      .row
+        .col-md-12.center
+          %h1.mb-sm.small OUR WEBSITE IS COMING SOON
+          %p.mb-none.lead An education platform for overseas student studying in Malaysia.
+      .row
+        .col-md-12
+          %hr.tall
+      .row
+        .col-md-6.col-md-offset-3
+          .progress-bars
+            .progress-label
+              %span
+                %strong Conception:
+                Finished
+            .progress
+              .progress-bar.progress-bar-primary{"data-appear-progress-animation" => "100%"}
+                %span.progress-bar-tooltip 100%
+            .progress-label
+              %span
+                %strong Design
+            .progress
+              .progress-bar.progress-bar-primary{"data-appear-animation-delay" => "300", "data-appear-progress-animation" => "50%"}
+                %span.progress-bar-tooltip 50%
+            .progress-label
+              %span
+                %strong Development
+            .progress
+              .progress-bar.progress-bar-primary{"data-appear-animation-delay" => "600", "data-appear-progress-animation" => "30%"}
+                %span.progress-bar-tooltip 30%
+      .row
+        .col-md-12
+          %hr.tall
+      .row
+        .col-md-6.col-md-offset-3
+          .newsletter
+            %h5.heading-primary Let me know when the site is done
+            #newsletterSuccess.alert.alert-success.hidden
+              %strong Success!
+              You've been added to our email list.
+            #newsletterError.alert.alert-danger.hidden
+            %form#newsletterForm{:action => "php/newsletter-subscribe.php", :method => "POST"}
+              .input-group
+                %input#newsletterEmail.form-control{:name => "newsletterEmail", :placeholder => "Email Address", :type => "text"}
+                  %span.input-group-btn
+                    %button.btn.btn-default{:type => "submit"} Subscribe Now
+  %footer#footer.short
+    .container
+      .row
+        .col-md-8
+          %h4.heading-primary About myStudent
+          %p
+            myStudent is an education guide for overseas student coming to Malaysia. myStudent contains vast knowledge of Universities, Accommodation Rental and Transport Rental in Malaysia. With only a few clicks, students are able to search for interested courses available in Malaysia, nearby accommodation and transport for rent. With a seamless platform, students can have peace of mind from struggling in preparation.
+          %hr.light
+        .col-md-3.col-md-offset-1
+          %h5.mb-sm Contact Us
+          %span.phone (60) 12 345-6789
+          %p.mb-none International: (60) 12 345-6789
+          %p.mb-none Fax: (60) 12 345-6789
+          %ul.list.list-icons.list-icons-sm
+            %li
+              %i.fa.fa-envelope
+              %a{:href => "mailto:support@mystudent.com"} support@mystudent.com
+          %ul.social-icons
+            %li.social-icons-facebook
+              %a{:href => "http://www.facebook.com/", :target => "_blank", :title => "Facebook"}
+                %i.fa.fa-facebook
+            %li.social-icons-twitter
+              %a{:href => "http://www.twitter.com/", :target => "_blank", :title => "Twitter"}
+                %i.fa.fa-twitter
+            %li.social-icons-linkedin
+              %a{:href => "http://www.linkedin.com/", :target => "_blank", :title => "Linkedin"}
+                %i.fa.fa-linkedin
+    .footer-copyright
       .container
-        .row.text-center
-          #house.col-sm-4
-            House
-          #university.col-sm-4
-            = link_to "University", universities_path
-          #car.col-sm-4
-            Car
+        .row
+          .col-md-1
+            %a.logo{:href => "index.html"}
+              %img.img-responsive{:alt => "Porto Website Template", :src => image_url("img/logo-footer.png")}
+          .col-md-11
+            %p © Copyright 2015. All Rights Reserved.
