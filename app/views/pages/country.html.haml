@@ -1,0 +1,12 @@
+%link{:href => "//fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700", :rel => "stylesheet", :type => "text/css"}
+%link{:href => "//fonts.googleapis.com/css?family=Roboto:100,300,400,700,900", :rel => "stylesheet", :type => "text/css"}
+.header
+  %h1 myStudent
+  %p.description
+    An education platform for students pursuing their studies overseas.
+.distribution-map
+  %img{:src => image_url("world_map.png")}
+    %button.map-point{:style => "top:61%;left:76%", onmouseup: "window.location='/malaysia';"}
+      .content
+        .centered-y
+          %h2 Malaysia
