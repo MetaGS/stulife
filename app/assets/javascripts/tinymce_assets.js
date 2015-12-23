@@ -1,1 +1,1 @@
-//= require tinymce/plugins/codemirror/plugin.js
+//= require tinymce/plugins/codemirror/plugin
