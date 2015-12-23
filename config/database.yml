@@ -78,8 +78,8 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: myStudent_production
-  username: myStudent
-  password: <%= ENV['MYSTUDENT_DATABASE_PASSWORD'] %>
+#production:
+#  <<: *default
+#  database: myStudent_production
+#  username: myStudent
+#  password: <%= ENV['MYSTUDENT_DATABASE_PASSWORD'] %>
