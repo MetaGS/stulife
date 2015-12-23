@@ -1,0 +1,55 @@
+%section.page-header
+  .container
+    .row
+      .col-md-12
+        %ul.breadcrumb
+          %li
+            %a{:href => root_path}= @country.name
+          %li
+            %a{:href => university_path(@university)}= @university.name
+          %li.active= controller_name.to_s.titlecase
+    .row
+      .col-md-12
+        %h1= @course.name
+
+.container
+  .row
+    .col-md-3
+      %aside.sidebar
+        %h4.heading-primary Summary
+        %dl
+          %dt Name
+          %dd= @course.name
+
+          %dt Intakes
+          %dd January, March, July
+
+          %dt Requirements
+          %dd SPM, O-Levels, etc.
+        %hr
+        %h4.heading-primary Similar Courses
+        %ul.list.list-icons.list-icons-sm
+          - @course.similar_courses.each do |course|
+            %li
+              %i.fa.fa-caret-right
+              = link_to course.name, university_course_path(course.university, course)
+    .col-md-9
+      .portfolio-info
+        .row
+          .col-md-12.center
+            %ul
+              %li
+                %a{"data-original-title" => "Like", "data-tooltip" => "", :href => "#"}
+                  %i.fa.fa-heart>
+                  14
+      -#%li
+                %i.fa.fa-calendar
+                21 November 2013
+      -#%li
+                %i.fa.fa-tags
+                = succeed "," do
+                  %a{:href => "#"} Brand
+                %a{:href => "#"} Design
+      %h2.heading-primary
+        Overview
+      %p.mt-xlg= @course.description.try(:html_safe)
