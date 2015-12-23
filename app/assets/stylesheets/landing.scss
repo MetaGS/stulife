@@ -3,7 +3,7 @@
  */
 
 html {
-  background: #1a1a1a;
+  background: #ffffff;
   color: #eeeeee;
   text-align: center;
   font-family: "Roboto", Helvetica, sans-serif;
@@ -23,7 +23,8 @@ body {
 .description {
   max-width: 600px;
   margin: 0 auto;
-  color: #eeeeee;
+  color: #000000;
+  font-size: 14pt;
 }
 
 div, img, footer {
@@ -98,7 +99,7 @@ li.active a, a:hover, a:active {
 .centered-y {
   position: absolute;
   width: 100%;
-  top: 50%;
+  top: 45%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
@@ -106,9 +107,9 @@ li.active a, a:hover, a:active {
 .distribution-map {
   position: relative;
   width: 100%;
-  padding: 20px;
+  padding: 0;
   box-sizing: border-box;
-  margin: 50px auto;
+  margin: 25px auto;
 }
 .distribution-map > img {
   width: 100%;
@@ -154,9 +155,9 @@ li.active a, a:hover, a:active {
   padding: 0;
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
-  width: 300px;
-  height: 220px;
-  color: #e5e5e5;
+  width: 200px;
+  height: 100px;
+  color: #ffffff;
   z-index: 1;
   -webkit-transition: opacity 0.25s ease-in-out, width 0.25s ease-in-out, height 0.25s ease-in-out;
   transition: opacity 0.25s ease-in-out, width 0.25s ease-in-out, height 0.25s ease-in-out;
