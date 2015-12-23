@@ -75,9 +75,16 @@
             plugins: [
                 'advlist autolink lists link image charmap print preview anchor',
                 'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table contextmenu paste save'
+                'insertdatetime media table contextmenu paste save codemirror'
             ],
-            toolbar: 'insertfile save undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            toolbar: 'insertfile save undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image code',
+            codemirror: {
+              indentOnInit: true,
+              path: '/codemirror-4.8',
+              config: {
+              lineNumbers: true
+              }
+            },
             save_onsavecallback: function () {
                 // console.log('Saved');
                 $.ajax({
