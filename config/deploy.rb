@@ -46,6 +46,25 @@ namespace :puma do
   before :start, :make_dirs
 end
 
+# Clear existing task so we can replace it rather than "add" to it.
+Rake::Task["deploy:compile_assets"].clear
+
+desc "Precompile assets locally and then rsync to web servers"
+task :compile_assets do
+  on roles(:web) do
+    rsync_host = host.to_s
+
+    run_locally do
+      with rails_env: :production do ## Set your env accordingly.
+        execute :bundle, "exec rake assets:precompile"
+      end
+      execute "rsync -av --delete ./public/assets/ #{fetch(:user)}@#{rsync_host}:#{shared_path}/public/assets/"
+      execute "rm -rf public/assets"
+      # execute "rm -rf tmp/cache/assets" # in case you are not seeing changes
+    end
+  end
+end
+
 namespace :deploy do
   desc "Make sure local git is in sync with remote."
   task :check_revision do
