@@ -20,7 +20,7 @@
       = javascript_include_tag 'tinymce_assets', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-  %body
+  %body{'data-no-turbolink' => true}
     #fb-root
     - if Rails.env == "production"
       :javascript
