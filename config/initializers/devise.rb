@@ -237,7 +237,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   if Rails.env == "production"
-    config.omniauth :facebook, "1647546812179737", ENV['FB_APP_SECRET']
+    config.omniauth :facebook, "1647546812179737", Figaro.env.fb_app_secret
   else
     config.omniauth :facebook, "1647002915567460", "bdd378466992bb35caceb431120b157e"
   end
