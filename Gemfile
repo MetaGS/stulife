@@ -52,5 +52,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'erb2haml'
   gem 'annotate'
+  gem 'quiet_assets'
+  gem 'newrelic_rpm'
+  gem 'bullet'
 end
 
