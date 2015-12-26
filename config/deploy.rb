@@ -31,7 +31,7 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 # set :keep_releases, 5
 
 ## Linked Files & Directories (Default None):
-set :linked_files, %w{config/database.yml config/secrets.yml config/application.yml}
+set :linked_files, %w{config/database.yml config/secrets.yml config/application.yml config/newrelic.yml}
 set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/fonts}
 
 namespace :puma do
@@ -96,6 +96,27 @@ namespace :deploy do
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
+end
+
+namespace :rails do
+  desc "Remote console"
+  task :console do
+    on roles(:app) do
+      run_interactively "bundle exec rails console #{fetch(:rails_env)}", fetch(:user)
+    end
+  end
+
+  desc "Remote dbconsole"
+  task :dbconsole do
+    on roles(:app) do
+      run_interactively "bundle exec rails dbconsole #{fetch(:rails_env)}", fetch(:user)
+    end
+  end
+
+  def run_interactively(command, user)
+    info "Running `#{command}` as #{user}@188.166.225.197"
+    exec %Q(ssh #{user}@188.166.225.197 -t "bash --login -c 'cd #{fetch(:deploy_to)}/current && #{command}'")
+  end
 end
 
 # ps aux | grep puma    # Get puma pid
