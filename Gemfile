@@ -30,6 +30,7 @@ gem 'tinymce-rails'
 gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 gem 'friendly_id', '~> 5.1.0'
 gem 'figaro'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'capistrano',         require: false
@@ -53,7 +54,6 @@ group :development, :test do
   gem 'erb2haml'
   gem 'annotate'
   gem 'quiet_assets'
-  gem 'newrelic_rpm'
   gem 'bullet'
 end
 
