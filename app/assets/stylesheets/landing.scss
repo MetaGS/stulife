@@ -3,7 +3,11 @@
  */
 
 html {
-  background: #ffffff;
+  //background: #ffffff;
+  background-image: image-url("sky.jpg");
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
   color: #eeeeee;
   text-align: center;
   font-family: "Roboto", Helvetica, sans-serif;
@@ -11,7 +15,7 @@ html {
 
 body {
   max-width: 1200px;
-  margin: 20px auto;
+  margin: 0px auto;
   padding: 0;
   overflow-x: hidden;
 }
@@ -135,9 +139,16 @@ li.active a, a:hover, a:active {
   -webkit-transition-delay: 0.25s, 0.25s, 0.25s, 0.25s;
   -webkit-transition: opacity 0.25s ease-in-out 0.25s, width 0.25s ease-in-out 0.25s, height 0.25s ease-in-out 0.25s, z-index 0.25s ease-in-out 0.25s;
   transition: opacity 0.25s ease-in-out 0.25s, width 0.25s ease-in-out 0.25s, height 0.25s ease-in-out 0.25s, z-index 0.25s ease-in-out 0.25s;
-  background: rgba(26, 26, 26, 0.85);
-  border: 5px solid #7fcff7;
+  //animation-name: example;
+  //animation-duration: 2s;
+  //animation-iteration-count: infinite;
+  background: rgba(0, 0, 0, 0.85);
+  border: 3px solid #000000;
 }
+//@keyframes example {
+//  from {background-color: black;}
+//  to {background-color: white;}
+//}
 .distribution-map .map-point .content {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
@@ -157,7 +168,7 @@ li.active a, a:hover, a:active {
   opacity: 1;
   width: 200px;
   height: 100px;
-  color: #ffffff;
+  color: #eeeeee;
   z-index: 1;
   -webkit-transition: opacity 0.25s ease-in-out, width 0.25s ease-in-out, height 0.25s ease-in-out;
   transition: opacity 0.25s ease-in-out, width 0.25s ease-in-out, height 0.25s ease-in-out;
