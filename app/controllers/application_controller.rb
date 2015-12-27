@@ -12,7 +12,17 @@ class ApplicationController < ActionController::Base
   end
 
   def set_country
-    @country = Country.find_by_slug(params[:country])
+    if params.has_key?(:select_country)
+      cookies[:country] = nil
+    end
+
+    if cookies[:country].present? && !params[:country].present?
+      @country = Country.find_by_slug(cookies[:country])
+      redirect_to root_path(locale: I18n.locale, country: @country.slug)
+    else
+      @country = Country.find_by_slug(params[:country])
+      cookies[:country] = { value: params[:country], expires: 30.days.from_now }
+    end
   end
 
   def default_url_options(options = {})

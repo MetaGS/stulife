@@ -6,7 +6,7 @@
     An education platform for students pursuing their studies overseas.
 .distribution-map
   %img{:src => image_url("world_map.png")}
-    %button.map-point{:style => "top:61%;left:76%", onmouseup: "window.location='/malaysia';"}
+    %button.map-point{:style => "top:61%;left:76%", onmouseup: "window.location='#{url_for root_path(country: "malaysia")}';"}
       .content
         .centered-y
           %h2 Malaysia
