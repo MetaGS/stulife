@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
       cookies[:country] = nil
     end
 
-    if cookies[:country].present? && !params[:country].present?
+    if cookies[:country].present? && !params[:country].present? && !request.path.include?("admin")
       @country = Country.find_by_slug(cookies[:country])
       redirect_to root_path(locale: I18n.locale, country: @country.slug)
     else
