@@ -1,0 +1,28 @@
+%h1 Houses
+
+.text-center
+  = link_to "New House", new_admin_house_path, class: "btn btn-default btn-lg"
+
+%table.table
+  %thead
+    %tr
+      %th ID
+      %th Type
+      %th Name
+      %th Address
+      %th Latitude
+      %th Longitude
+      %th
+      %th
+
+  %tbody
+    - @houses.each do |house|
+      %tr
+        %td= house.id
+        %td= house.property_type
+        %td= house.name
+        %td= house.address
+        %td= house.latitude
+        %td= house.longitude
+        %td= link_to "Edit", edit_admin_house_path(house), class: "btn btn-default"
+        %td= link_to "Units", admin_house_house_units_path(house), class: "btn btn-info"

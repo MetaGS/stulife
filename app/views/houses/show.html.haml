@@ -1,0 +1,113 @@
+:css
+  #map {
+    height: 500px;
+    width: 100%;
+  }
+
+  #units-list {
+    height: 450px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  #units-list .thumbnail {
+    margin-bottom: 0 !important;
+  }
+
+  .unit-image {
+    height: 70px;
+    line-height: 85px;
+  }
+
+  .unit-image img {
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+= content_for :title, "#{@house.name.gsub("'", "")} - #{@country.name}"
+
+%section.page-header
+  .container
+    .row
+      .col-md-12
+        %ul.breadcrumb
+          %li
+            %a{:href => root_path}= @country.name
+          %li.active= controller_name.to_s.titlecase
+    .row
+      .col-md-12
+        %h1= @house.name
+
+.container
+  .row
+    .col-md-6
+      #map
+    .col-md-6
+      #units-list.panel-group.without-bg
+        - @units.each do |unit|
+          .panel.panel-default
+            .panel-heading
+              %a.accordion-toggle.collapsed{href: "#unit_#{unit.id}", data: {parent: "#units-list", toggle: "collapse"}, "aria-expanded" => "false"}
+                .row.text-center
+                  .col-xs-3.unit-image
+                    = image_tag unit.featured_image.image.url(:thumb), class: "img-responsive"
+                  .col-xs-6
+                    .heading.heading-border.heading-middle-border.heading-middle-border-center.mb-xs.mt-sm
+                      %h4= unit.unit_type
+                    %p #{unit.size} sqft
+                  .col-xs-3
+                    %h5.mt-md= number_to_currency unit.price, unit: "MYR ", precision: 0
+            .accordion-body.collapse{id: "unit_#{unit.id}", "aria-expanded" => "false"}
+              .panel-body
+                .row
+                  .col-xs-12
+                    .lightbox{data: {"plugin-options" => "{\"delegate\": \"a\", \"type\": \"image\", \"gallery\": {\"enabled\": true}, \"mainClass\": \"mfp-with-zoom\", \"zoom\": {\"enabled\": true, \"duration\": 300}}"}}
+                      .owl-carousel.owl-theme{data: {"plugin-options" => "{\"items\": 4, \"margin\": 0, \"loop\": true, \"nav\": true, \"dots\": true, \"stagePadding\": 0, \"center\": true}"}}
+                        - unit.images.each do |image|
+                          %div
+                            %a.img-thumbnail{href: image.image.url(:original)}
+                              = image_tag image.image.url(:thumb), class: "img-responsive", style: "height: 50px;"
+                .row
+                  .col-xs-12
+                    = unit.description.try(:html_safe)
+                    %dl.dl-horizontal
+                      %dt Security Deposit
+                      %dd #{unit.security_deposit_months} month(s)
+
+                      %dt Utilities Deposit
+                      %dd #{unit.utilities_deposit_months} month(s)
+
+                      %dt Owner
+                      %dd #{unit.owner_name}
+
+                      %dt Contact No.
+                      %dd #{unit.owner_mobile}
+
+                      %dt Email
+                      %dd #{unit.owner_email}
+
+-# Code for House Unit Modal
+-#.container
+  .row
+    .col-md-6
+      #map
+    .col-md-6
+      %h1.text-center #{@house.name}
+      #units-list
+        - @units.each do |unit|
+          %a{href: house_house_unit_path(@house, unit), data: {remote: true}}
+            .row
+              .col-md-12
+                .col-xs-3
+                  = image_tag unit.featured_image.image.url(:thumb), class: "thumbnail"
+                .col-xs-7
+                  %h4
+                    = unit.unit_type
+                    %small #{unit.size} sqft
+                .col-xs-2
+                  %h4= number_to_currency unit.price, unit: "MYR", precision: 0
+
+#unit-modal-wrapper
+
+= content_for :javascript do
+  = javascript_include_tag "houses"

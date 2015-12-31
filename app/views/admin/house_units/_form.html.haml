@@ -1,0 +1,48 @@
+= form_for [:admin, @house, @unit] do |f|
+  = validation_errors @unit, "unit", "saved"
+
+  .form-group
+    = f.label :unit_type
+    = f.select :unit_type, options_for_select(HouseUnit::UNIT_TYPE), {prompt: "Select a unit type"}, class: "form-control"
+
+  .form-group
+    = f.label :size, "Size - Square Feet"
+    = f.text_field :size, class: "form-control"
+
+  .form-group
+    = f.label :price
+    = f.text_field :price, class: "form-control"
+
+  .form-group
+    = f.label :description
+    = f.text_area :description, class: "form-control"
+
+  .form-group
+    = f.label :owner_name, "Owner's Name"
+    = f.text_field :owner_name, class: "form-control"
+
+  .form-group
+    = f.label :owner_mobile, "Owner's Mobile No."
+    = f.text_field :owner_mobile, class: "form-control"
+
+  .form-group
+    = f.label :owner_email, "Owner's Email"
+    = f.text_field :owner_email, class: "form-control"
+
+  .form-group
+    = f.label :security_deposit_months, "Security Deposit - Month(s)"
+    = f.text_field :security_deposit_months, class: "form-control"
+
+    .form-group
+    = f.label :utilities_deposit_months, "Utilities Deposit - Month(s)"
+    = f.text_field :utilities_deposit_months, class: "form-control"
+
+  - if params[:action] == "edit"
+    .form-group
+      = f.label :featured_image_id, "Featured Image"
+      %select#featured_image.image-picker{name: "house_unit[featured_image_id]"}
+        - @unit.images.each do |image|
+          %option{"data-img-src" => image_path(image.image.url(:medium)), value: image.id}= image.image_file_name
+
+  .form-group
+    = f.submit "Submit", class: "btn btn-primary"

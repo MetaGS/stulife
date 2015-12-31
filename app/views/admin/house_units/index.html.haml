@@ -1,0 +1,22 @@
+%h1 Units for #{@house.name}
+
+.text-center
+  = link_to "New Unit", new_admin_house_house_unit_path(@house), class: "btn btn-default btn-lg"
+
+%table.table
+  %thead
+    %tr
+      %th ID
+      %th Type
+      %th Size
+      %th Price
+      %th
+
+  %tbody
+    - @units.each do |unit|
+      %tr
+        %td= unit.id
+        %td= unit.unit_type
+        %td= unit.size
+        %td= unit.price
+        %td= link_to "Edit", edit_admin_house_house_unit_path(unit.house, unit), class: "btn btn-default"

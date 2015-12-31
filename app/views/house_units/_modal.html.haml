@@ -1,0 +1,25 @@
+#unit-modal.modal.fade{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#unit-modal-label.modal-title.text-center= @unit.name
+      .modal-body
+        .text-center
+          .lightbox
+          - @unit.images.each do |image|
+            %a.img-thumbnail.img-thumbnail-hover-icon.mb-xs.mr-xs{:href => image_url(image.image.url(:original))}
+              = image_tag image.image.url(:thumb), class: "img-responsive", width: 110, height: 110
+      -#.modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-primary{:type => "button"} Send message
+
+:javascript
+  $('.lightbox').magnificPopup({
+    delegate: 'a',
+    type: 'image',
+    gallery:{
+      enabled:true
+    }
+  });

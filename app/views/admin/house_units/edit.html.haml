@@ -1,0 +1,156 @@
+%h1 Edit Unit
+
+.text-center
+  = link_to "Back", admin_house_house_units_path(@house) , class: "btn btn-default"
+
+= render :partial => 'form'
+
+.row
+  .col-md-12
+    .panel.panel-info
+      .panel-heading House Images
+      .panel-body
+        %form#fileupload{:action => admin_images_path, :enctype => "multipart/form-data", :method => "POST"}
+          / The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload
+          .row.fileupload-buttonbar
+            .col-lg-7
+              / The fileinput-button span is used to style the file input field as button
+              %span.btn.btn-success.fileinput-button
+                %i.fa.fa-plus
+                %span
+                  Add files...
+                %input{:multiple => "", :name => "image", :type => "file"}
+                = hidden_field_tag "imageable_type", "HouseUnit"
+                = hidden_field_tag "imageable_id", @unit.id
+              %button.btn.btn-info.start{:type => "submit"}
+                %i.fa.fa-upload
+                %span
+                  Start upload
+              %button.btn.btn-warning.cancel{:type => "reset"}
+                %i.fa.fa-ban-circle
+                %span
+                  Cancel upload
+              %button.btn.btn-danger.delete{:type => "button"}
+                %i.fa.fa-trash
+                %span
+                  Delete
+              %input.toggle{:type => "checkbox"}
+                / The global file processing state
+                %span.fileupload-process
+            / The global progress information
+            .col-lg-5.fileupload-progress.fade
+              / The global progress bar
+              .progress.progress-striped.active{"aria-valuemax" => "100", "aria-valuemin" => "0", :role => "progressbar"}
+                .progress-bar.progress-bar-success{:style => "width:0%;"}
+              / The extended global progress information
+              .progress-extended
+                \&nbsp;
+          / The table listing the files available for upload/download
+          %table.table.table-striped.clearfix{:role => "presentation"}
+            %tbody.files
+              - @unit.images.each do |image|
+                %tr.template-download.fade.in
+                  %td
+                    %span.preview
+                      = link_to image_tag(image.image.url(:thumb)), image.image.url(:original), "data-gallery" => ""
+                  %td
+                    %p.name
+                      %span= image.image_file_name
+                  %td
+                    %span.size= number_to_human_size image.image_file_size
+                  %td
+                    %button.btn.btn-danger.delete.btn-sm{"data-type" => "delete", "data-url" => admin_image_path(image)} Delete
+                    %input.toggle{:name => "delete", :type => "checkbox", :value => "1"}
+
+#blueimp-gallery.blueimp-gallery.blueimp-gallery-controls
+  .slides
+  %h3.title
+  %a.prev
+    ‹
+  %a.next
+    ›
+  %a.close.white
+  %a.play-pause
+  %ol.indicator
+
+%script#template-upload{:type => "text/x-tmpl"}
+  {% for (var i=0, file; file=o.files[i]; i++) { %}
+  %tr.template-upload.fade
+    %td
+      %span.preview
+    %td
+      %p.name {%=file.name%}
+      %strong.error.text-danger.label.label-danger
+    %td
+      %p.size Processing...
+      .progress.progress-striped.active{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "0", :role => "progressbar"}
+        .progress-bar.progress-bar-success{:style => "width:0%;"}
+    %td
+      {% if (!i && !o.options.autoUpload) { %}
+      %button.btn.btn-info.start{:disabled => ""}
+        %i.fa.fa-upload
+        %span Start
+      {% } %}
+      {% if (!i) { %}
+      %button.btn.btn-danger.cancel
+        %i.fa.fa-ban
+        %span Cancel
+      {% } %}
+  {% } %}
+
+%script#template-download{:type => "text/x-tmpl"}
+  {% for (var i=0, file; file=o.files[i]; i++) { %}
+  %tr.template-download.fade
+    %td
+      %span.preview
+        {% if (file.thumbnailUrl) { %}
+        %a{"data-gallery" => "", :download => "{%=file.name%}", :href => "{%=file.originalUrl%}", :title => "{%=file.name%}"}
+          %img{:src => "{%=file.thumbnailUrl%}"}/
+        {% } %}
+    %td
+      %p.name
+        {% if (file.url) { %}
+        <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}
+        {% } else { %}
+        %span {%=file.name%}
+        {% } %}
+      {% if (file.error) { %}
+      %div
+        %span.label.label-danger Error
+        {%=file.error%}
+      {% } %}
+    %td
+      %span.size {%=o.formatFileSize(file.size)%}
+    %td
+      {% if (file.deleteUrl) { %}
+      <button class="btn btn-danger delete btn-sm" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+      <i class="fa fa-trash-o"></i>
+      <span>Delete</span>
+      </button>
+      %input.toggle{:name => "delete", :type => "checkbox", :value => "1"}
+      {% } else { %}
+      %button.btn.yellow.cancel.btn-sm
+        %i.fa.fa-ban
+        %span Cancel
+      {% } %}
+  {% } %}
+
+:javascript
+  function selectImage() {
+    // Deselect first child of .image_picker_selector
+    $('.thumbnail').removeClass('selected');
+
+    // Get path of featured image
+    src = '#{ @unit.featured_image.image.url(:medium) if @unit.featured_image }';
+
+    // Select featured image if src is not blank;
+    if (src.length > 0) {
+      $('.thumbnails img[src$=\'' + src + '\']').parent().addClass('selected');
+    }
+  }
+
+  $(document).ready(function () {
+    FormFileUpload.init();
+    $("#featured_image").imagepicker();
+    selectImage();
+  });
