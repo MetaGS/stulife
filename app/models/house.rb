@@ -32,7 +32,19 @@ class House < ActiveRecord::Base
     Image.find_by_imageable_type_and_imageable_id_and_id('House', id, self[:featured_image_id]) || images.first
   end
 
+  def self.available_houses
+    all.select{ |x| x.available_house_units.count > 0 }
+  end
+
   def available_house_units
     HouseUnit.where(house_id: id).where.not(featured_image_id: nil)
+  end
+
+  def min_price
+    available_house_units.order(:price).first.try(:price)
+  end
+
+  def max_price
+    available_house_units.order(:price).last.try(:price)
   end
 end
