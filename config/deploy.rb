@@ -122,3 +122,32 @@ end
 # ps aux | grep puma    # Get puma pid
 # kill -s SIGUSR2 pid   # Restart puma
 # kill -s SIGTERM pid   # Stop puma
+
+# if you haven't already specified
+set :rails_env, "production"
+
+# if you want to remove the local dump file after loading
+set :db_local_clean, false
+
+# if you want to remove the dump file from the server after downloading
+set :db_remote_clean, true
+
+# if you want to exclude table from dump
+set :db_ignore_tables, []
+
+# if you want to exclude table data (but not table schema) from dump
+set :db_ignore_data_tables, []
+
+# If you want to import assets, you can change default asset dir (default = system)
+# This directory must be in your shared directory on the server
+set :assets_dir, %w(public/system)
+set :local_assets_dir, %w(public/system)
+
+# if you want to work on a specific local environment (default = ENV['RAILS_ENV'] || 'development')
+set :locals_rails_env, "development"
+
+# if you are highly paranoid and want to prevent any push operation to the server
+set :disallow_pushing, true
+
+# if you prefer bzip2/unbzip2 instead of gzip
+set :compressor, :gzip
