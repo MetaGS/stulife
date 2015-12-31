@@ -15,6 +15,7 @@
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'modernizr/modernizr.min', 'data-turbolinks-track' => true
+    = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAfnZKjaO5E7biy0ZoHgq0OAjKcfZJ359I'
     - if current_admin && params.has_key?(:edit)
       = javascript_include_tag 'tinymce', 'data-turbolinks-track' => true
       = javascript_include_tag 'tinymce_assets', 'data-turbolinks-track' => true
@@ -89,8 +90,9 @@
             save_onsavecallback: function () {
                 // console.log('Saved');
                 $.ajax({
-                    method: 'PUT',
-                    url: '/admin/save_page_region?country_id=' + '#{@country.id}' + '&name=' + tinyMCE.activeEditor.id + '&content=' + encodeURIComponent(tinyMCE.activeEditor.getContent())
+                    method: 'POST',
+                    url: '/admin/save_page_region?country_id=' + '#{@country.id}',
+                    data: {name: tinyMCE.activeEditor.id, content: tinyMCE.activeEditor.getContent()}
                 }).done(function (msg) {
                     alert('Content saved.');
                 }).fail(function (msg) {
@@ -98,6 +100,8 @@
                 });
             }
         });
+
+    = yield :javascript
 
     -# if Rails.env == "development"
       = console

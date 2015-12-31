@@ -15,18 +15,27 @@ Rails.application.routes.draw do
       resources :universities, only: [:index, :show] do
         resources :courses, only: [:index, :show]
       end
+
+      resources :houses do
+        resources :house_units do
+          post :show
+        end
+      end
     end
 
     namespace :admin do
       root to: 'admin#dashboard'
 
-      put '/save_page_region', to: 'admin#save_page_region'
+      post '/save_page_region', to: 'admin#save_page_region'
 
       resources :countries
       resources :universities do
         resources :courses
       end
       resources :images
+      resources :houses do
+        resources :house_units
+      end
     end
   end
 end
