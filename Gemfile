@@ -31,6 +31,7 @@ gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 gem 'friendly_id', '~> 5.1.0'
 gem 'figaro'
 gem 'newrelic_rpm'
+gem 'geokit-rails'
 
 group :development do
   gem 'capistrano',         require: false
@@ -51,6 +52,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'awesome_print'
   gem 'rspec-rails'
+  gem 'capybara'
   gem 'factory_girl_rails'
   gem 'erb2haml'
   gem 'annotate'
