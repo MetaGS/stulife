@@ -41,10 +41,10 @@ class House < ActiveRecord::Base
   end
 
   def min_price
-    available_house_units.order(:price).first.try(:price)
+    available_house_units.minimum(:price)
   end
 
   def max_price
-    available_house_units.order(:price).last.try(:price)
+    available_house_units.maximum(:price)
   end
 end
