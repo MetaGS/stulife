@@ -27,6 +27,6 @@ class HouseUnit < ActiveRecord::Base
   UNIT_TYPE = ["House", "Master Room", "2nd Room", "3rd Room", "4th Room"]
 
   def featured_image
-    Image.find_by_imageable_type_and_imageable_id_and_id('House', id, self[:featured_image_id]) || images.first
+    Image.find_by_imageable_type_and_imageable_id_and_id('HouseUnit', id, self[:featured_image_id]) || images.first
   end
 end
