@@ -51,6 +51,6 @@ class Admin::CoursesController < Admin::AdminController
   end
 
   def course_params
-    params[:course].permit(:name, :slug, :university_id, :description)
+    params[:course].permit(:name, :slug, :university_id, :description, :study_level_id, :study_field_id)
   end
 end

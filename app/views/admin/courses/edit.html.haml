@@ -12,6 +12,14 @@
     = f.text_field :slug, class: "form-control"
 
   .form-group
+    = f.label :study_level_id, "Study Level"
+    = f.select :study_level_id, options_for_select(StudyLevel.all.collect{|x| x.name}, @course.study_level_id), {prompt: "Select Level of Study"}, class: "form-control"
+
+  .form-group
+    = f.label :study_field_id, "Study Field"
+    = f.select :study_field_id, options_for_select(StudyField.all.collect{|x| x.name}, @course.study_field_id), {prompt: "Select Field of Study"}, class: "form-control"
+
+  .form-group
     = f.label :description
     = f.text_area :description, class: "tinymce"
 

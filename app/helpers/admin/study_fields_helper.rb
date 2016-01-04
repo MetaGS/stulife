@@ -1,0 +1,2 @@
+module Admin::StudyFieldsHelper
+end

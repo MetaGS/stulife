@@ -17,6 +17,8 @@ class Course < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  belongs_to :study_level
+  belongs_to :study_field
   belongs_to :university
 
   validates_presence_of :university, :name, :description
