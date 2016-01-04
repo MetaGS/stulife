@@ -21,7 +21,7 @@ class Course < ActiveRecord::Base
   belongs_to :study_field
   belongs_to :university
 
-  validates_presence_of :university, :name, :description
+  validates_presence_of :university, :name, :description, :study_level_id, :study_field_id
   validates :name, :slug, uniqueness: { scope: :university_id, message: "should be unique for the university" }
 
   def similar_courses
