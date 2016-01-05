@@ -23,4 +23,6 @@
 //= require views/view.home
 //= require theme.init
 
+//= require plugins/selectize/selectize.min
+
 // require_tree .
