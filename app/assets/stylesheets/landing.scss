@@ -36,60 +36,64 @@ div, img, footer {
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin-bottom: 10px;
-  font-family: "Myriad Pro", Helvetica, sans-serif;
-  font-weight: 300;
-}
+//h1, h2, h3, h4, h5, h6 {
+//  margin-bottom: 10px;
+//  font-family: "Myriad Pro", Helvetica, sans-serif;
+//  font-weight: 300;
+//}
+//
+//h1 {
+//  font-size: 36pt;
+//}
+//
+//h2 {
+//  font-size: 24pt;
+//}
+//
+//h3 {
+//  font-size: 18pt;
+//}
+//
+//h4 {
+//  font-size: 16pt;
+//}
+//
+//h5 {
+//  font-size: 14pt;
+//}
+//
+//h6 {
+//  font-size: 12pt;
+//}
+//
+//p {
+//  font-size: 12pt;
+//  margin-bottom: 12pt;
+//}
+//
+//strong {
+//  font-weight: 900;
+//  font-family: "Roboto Condensed", Helvetica, sans-serif;
+//  color: #eeeeee;
+//}
 
-h1 {
-  font-size: 36pt;
-}
+//a {
+//  -webkit-transition: color 0.25s ease-in-out;
+//  transition: color 0.25s ease-in-out;
+//  font-family: "Roboto Condensed", Helvetica, sans-serif;
+//  text-transform: uppercase;
+//  text-decoration: none;
+//  color: #dff3fd;
+//}
+//a:visited {
+//  color: #dff3fd;
+//}
+//li.active a, a:hover, a:active {
+//  color: #e5e5e5;
+//}
 
-h2 {
-  font-size: 24pt;
-}
-
-h3 {
-  font-size: 18pt;
-}
-
-h4 {
-  font-size: 16pt;
-}
-
-h5 {
-  font-size: 14pt;
-}
-
-h6 {
-  font-size: 12pt;
-}
-
-p {
-  font-size: 12pt;
-  margin-bottom: 12pt;
-}
-
-strong {
-  font-weight: 900;
-  font-family: "Roboto Condensed", Helvetica, sans-serif;
-  color: #eeeeee;
-}
-
-a {
-  -webkit-transition: color 0.25s ease-in-out;
-  transition: color 0.25s ease-in-out;
-  font-family: "Roboto Condensed", Helvetica, sans-serif;
-  text-transform: uppercase;
+a:hover {
   text-decoration: none;
-  color: #dff3fd;
-}
-a:visited {
-  color: #dff3fd;
-}
-li.active a, a:hover, a:active {
-  color: #e5e5e5;
 }
 
 .centered {
@@ -103,7 +107,7 @@ li.active a, a:hover, a:active {
 .centered-y {
   position: absolute;
   width: 100%;
-  top: 45%;
+  top: 65%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
@@ -167,7 +171,7 @@ li.active a, a:hover, a:active {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
   width: 200px;
-  height: 100px;
+  height: 90px;
   color: #eeeeee;
   z-index: 1;
   -webkit-transition: opacity 0.25s ease-in-out, width 0.25s ease-in-out, height 0.25s ease-in-out;
@@ -186,4 +190,7 @@ li.active a, a:hover, a:active {
 }
 .distribution-map .map-point:active .content a:hover, .distribution-map .map-point:active .content a:active, .distribution-map .map-point:focus .content a:hover, .distribution-map .map-point:focus .content a:active {
   color: #afe1fa;
+}
+.modules{
+  height: 300px;
 }
