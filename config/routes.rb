@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       post '/save_page_region', to: 'admin#save_page_region'
 
       resources :countries
+      resources :study_fields
       resources :universities do
         resources :courses
       end

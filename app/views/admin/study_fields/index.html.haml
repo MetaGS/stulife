@@ -1,0 +1,18 @@
+%h1 Study Fields
+
+.text-center
+  = link_to "New Study Field", new_admin_study_field_path, class: "btn btn-default btn-lg"
+
+%table.table
+  %thead
+    %tr
+      %th ID
+      %th Name
+      %th
+
+  %tbody
+    - @study_fields.each do |field|
+      %tr
+        %td= field.id
+        %td= field.name
+        %td= link_to "Edit", edit_admin_study_field_path(field), class: "btn btn-default"

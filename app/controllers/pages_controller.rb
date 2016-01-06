@@ -10,6 +10,6 @@ class PagesController < ApplicationController
   end
 
   def home
-
+    @study_fields = StudyField.all.sort_by { |x| x.name }
   end
 end

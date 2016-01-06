@@ -1,6 +1,6 @@
 class Admin::StudyFieldsController < Admin::AdminController
   def index
-    @study_fields = StudyField.all
+    @study_fields = StudyField.all.order(:id)
   end
 
   def new
@@ -34,6 +34,6 @@ class Admin::StudyFieldsController < Admin::AdminController
   private
 
   def study_field_params
-    params[:study_field].permit
+    params[:study_field].permit!
   end
 end
