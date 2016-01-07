@@ -29,4 +29,20 @@ class CarVendor < ActiveRecord::Base
   def featured_image
     Image.find_by_imageable_type_and_imageable_id_and_id(self.class.class_name, id, self[:featured_image_id]) || images.first
   end
+
+  def self.available_vendors
+    all.select{ |x| x.available_cars.count > 0 }
+  end
+
+  def available_cars
+    Car.where(car_vendor_id: id).where.not(featured_image_id: nil)
+  end
+
+  def min_price
+    available_cars.minimum(:price)
+  end
+
+  def max_price
+    available_cars.maximum(:price)
+  end
 end

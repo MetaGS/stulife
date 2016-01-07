@@ -1,0 +1,110 @@
+:css
+  #map {
+    height: 500px;
+    width: 100%;
+  }
+
+  #cars-list {
+    height: 450px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  #cars-list .thumbnail {
+    margin-bottom: 0 !important;
+  }
+
+  .car-image {
+    height: 70px;
+    line-height: 85px;
+  }
+
+  .car-image img {
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+= content_for :title, "#{@car_vendor.name.gsub("'", "")} - #{@country.name}"
+
+%section.page-header
+  .container
+    .row
+      .col-md-12
+        %ul.breadcrumb
+          %li
+            %a{:href => root_path}= @country.name
+          %li.active= controller_name.to_s.titlecase
+    .row
+      .col-md-12
+        %h1= @car_vendor.name
+
+.container
+  .row
+    .col-md-6
+      .google-map-borders
+        #map.google-map.mt-none.mb-none
+    .col-md-6
+      #cars-list.panel-group.without-bg
+        - @cars.each do |car|
+          .panel.panel-default
+            .panel-heading
+              %a.accordion-toggle.collapsed{href: "#car_#{car.id}", data: {parent: "#cars-list", toggle: "collapse"}, "aria-expanded" => "false"}
+                .row.text-center
+                  .col-xs-3.car-image
+                    = image_tag car.featured_image.image.url(:thumb), class: "img-responsive"
+                  .col-xs-6
+                    .heading.heading-border.heading-middle-border.heading-middle-border-center.mb-xs.mt-sm
+                      %h4= car.name
+                    %p #{car.year}
+                  .col-xs-3
+                    %h4.mt-md= number_to_currency car.price, unit: "MYR ", precision: 0
+            .accordion-body.collapse{id: "car_#{car.id}", "aria-expanded" => "false"}
+              .panel-body
+                .row
+                  .col-xs-12
+                    .lightbox{data: {"plugin-options" => "{\"delegate\": \"a\", \"type\": \"image\", \"gallery\": {\"enabled\": true}, \"mainClass\": \"mfp-with-zoom\", \"zoom\": {\"enabled\": true, \"duration\": 300}}"}}
+                      .owl-carousel.owl-theme{data: {"plugin-options" => "{\"items\": 4, \"margin\": 0, \"loop\": true, \"nav\": true, \"dots\": true, \"stagePadding\": 0, \"center\": true}"}}
+                        - car.images.each do |image|
+                          %div
+                            %a.img-thumbnail{href: image.image.url(:original)}
+                              = image_tag image.image.url(:thumb), class: "img-responsive", style: "height: 50px;"
+                .row
+                  .col-xs-12
+                    = car.description.try(:html_safe)
+                    %dl.dl-horizontal
+                      %dt Deposit
+                      %dd #{car.deposit_months} month(s)
+
+                      %dt Owner
+                      %dd #{@car_vendor.owner_name}
+
+                      %dt Contact No.
+                      %dd #{@car_vendor.owner_mobile}
+
+                      %dt Email
+                      %dd #{@car_vendor.owner_email}
+-# Code for House Unit Modal
+-#.container
+  .row
+    .col-md-6
+      #map
+    .col-md-6
+      %h1.text-center #{@car_vendor.name}
+      #cars-list
+        - @cars.each do |car|
+          %a{href: house_house_car_path(@car_vendor, car), data: {remote: true}}
+            .row
+              .col-md-12
+                .col-xs-3
+                  = image_tag car.featured_image.image.url(:thumb), class: "thumbnail"
+                .col-xs-7
+                  %h4
+                    = car.car_type
+                    %small #{car.size} sqft
+                .col-xs-2
+                  %h4= number_to_currency car.price, car: "MYR", precision: 0
+
+#car-modal-wrapper
+
+= content_for :javascript do
+  = javascript_include_tag "car_vendors"

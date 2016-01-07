@@ -21,6 +21,10 @@ Rails.application.routes.draw do
           post :show
         end
       end
+
+      resources :car_vendors, path: "/cars" do
+
+      end
     end
 
     namespace :admin do

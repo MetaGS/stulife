@@ -24,7 +24,7 @@ class Car < ActiveRecord::Base
   BRAND = ["AlfaRomeo", "AstonMartin", "Audi", "Bentley", "BMW", "Bufori", "Caterham", "Chana", "Chery", "Chevrolet", "Citroen", "Ferrari", "Fiat", "Ford", "GreatWall", "Honda", "Hyundai", "Infiniti", "Isuzu", "Jaguar", "Jeep", "Kia", "Lamborghini", "LandRover", "Lexus", "Lotus", "Mahindra", "Maserati", "Maxus", "Mazda", "McLaren", "Mercedes-Benz", "MINI", "Mitsubishi", "Nissan", "Perodua", "Peugeot", "Porsche", "Proton", "Renault", "Rolls-Royce", "Skoda", "SsangYong", "Subaru", "Suzuki", "Tata", "Toyota", "Volkswagen", "Volvo"]
 
   def name
-    "#{brand} #{model} (#{year})"
+    "#{brand} #{model}"
   end
 
   def featured_image

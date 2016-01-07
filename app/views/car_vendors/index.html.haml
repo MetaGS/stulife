@@ -1,0 +1,15 @@
+:css
+  #map {
+    height: 500px;
+    width: 100%;
+  }
+
+.container
+  %h1 Cars
+  .row
+    .col-md-12
+      .google-map-borders
+        #map.google-map.mt-none.mb-none
+
+= content_for :javascript do
+  = javascript_include_tag "car_vendors"
