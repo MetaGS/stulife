@@ -15,6 +15,7 @@
         = navbar_item("Study Fields", admin_study_fields_path)
         = navbar_item("Universities", admin_universities_path)
         = navbar_item("Houses", admin_houses_path)
+        = navbar_item("Cars", admin_car_vendors_path)
       %ul.nav.navbar-nav.navbar-right
         - if admin_signed_in?
           %li= link_to "Logout", destroy_admin_session_path(country: "malaysia"), method: :delete

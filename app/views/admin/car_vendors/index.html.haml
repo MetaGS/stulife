@@ -1,0 +1,24 @@
+%h1 Car Vendors
+
+.text-center
+  = link_to "New Car Vendor", new_admin_car_vendor_path, class: "btn btn-lg btn-default"
+
+%table.table
+  %thead
+    %tr
+      %th ID
+      %th Name
+      %th Owner Name
+      %th Owner Mobile
+      %th
+      %th
+
+  %tbody
+    - @car_vendors.each do |car_vendor|
+      %tr
+        %td= car_vendor.id
+        %td= car_vendor.name
+        %td= car_vendor.owner_name
+        %td= car_vendor.owner_mobile
+        %td= link_to "Edit", edit_admin_car_vendor_path(car_vendor), class: "btn btn-default"
+        %td= link_to "Cars Listing", admin_car_vendor_cars_path(car_vendor), class: "btn btn-info"

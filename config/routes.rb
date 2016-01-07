@@ -37,6 +37,9 @@ Rails.application.routes.draw do
       resources :houses do
         resources :house_units
       end
+      resources :car_vendors do
+        resources :cars
+      end
     end
   end
 end

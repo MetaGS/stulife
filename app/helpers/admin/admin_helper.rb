@@ -3,7 +3,9 @@ module Admin::AdminHelper
     content_tag(:li, link_to(name, path, class: "nav-link"), class: ("nav-item #{"active" if path == request.path}" ))
   end
 
-  def validation_errors(instance, instance_name, instance_action)
+  def validation_errors(instance, instance_name = "", instance_action = "")
+    instance_name = instance.class.name.underscore.split('_').collect{|c| c.capitalize}.join(' ')
+    instance_action = params[:action] == "new" ? "created" : "updated"
     if instance.errors.any?
       content_tag(:div, id: "error_explanation") do
         content_tag(:div, class: "alert alert-danger") do

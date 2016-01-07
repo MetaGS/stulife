@@ -4,6 +4,9 @@ class CreateCars < ActiveRecord::Migration
       t.integer :car_vendor_id, index: true
       t.integer :featured_image_id, index: true
       t.string :car_type, index: true
+      t.string :brand, index: true
+      t.string :model, index: true
+      t.string :year, index: true
       t.integer :price, index: true
       t.integer :deposit_months
       t.text :description

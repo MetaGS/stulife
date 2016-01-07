@@ -1,0 +1,40 @@
+= form_for [:admin, @car_vendor, @car] do |f|
+  = validation_errors @car
+
+  .form-group
+    = f.label :car_type
+    = f.select :car_type, options_for_select(Car::CAR_TYPE, @car.car_type), {prompt: "Select a Car Type"}, required: true, class: "form-control"
+
+  .form-group
+    = f.label :brand
+    = f.select :brand, options_for_select(Car::BRAND, @car.brand), {prompt: "Select a Brand"}, required: true, class: "form-control"
+
+  .form-group
+    = f.label :model
+    = f.text_field :model, required: true, class: "form-control"
+
+  .form-group
+    = f.label :year
+    = f.text_field :year, required: true, class: "form-control"
+
+  .form-group
+    = f.label :price
+    = f.text_field :price, required: true, class: "form-control"
+
+  .form-group
+    = f.label :deposit_months, "Deposit (Months)"
+    = f.text_field :deposit_months, required: true, class: "form-control"
+
+  .form-group
+    = f.label :description
+    = f.text_area :description, class: "form-control"
+
+  - if params[:action] == "edit"
+    .form-group
+      = f.label :featured_image_id, "Featured Image"
+      %select#featured_image.image-picker{name: "car[featured_image_id]"}
+        - @car.images.each do |image|
+          %option{"data-img-src" => image_path(image.image.url(:medium)), value: image.id}= image.image_file_name
+
+  .form-group
+    = f.submit "Submit", class: "btn btn-primary"

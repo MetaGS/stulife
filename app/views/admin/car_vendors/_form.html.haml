@@ -1,0 +1,37 @@
+= form_for [:admin, @car_vendor] do |f|
+  = validation_errors @car_vendor, "car vendor"
+
+  .form-group
+    = f.label :country_id
+    = f.select :country_id, options_for_select(Country.all.map{ |x| [x.name, x.id] }), {prompt: "Select a country"}, class: "form-control"
+
+  .form-group
+    = f.label :name
+    = f.text_field :name, required: true, class: "form-control"
+
+  .form-group
+    = f.label :address
+    = f.text_field :address, required: true, class: "form-control"
+
+  .form-group
+    = f.label :latitude
+    = f.text_field :latitude, required: true, class: "form-control"
+
+  .form-group
+    = f.label :longitude
+    = f.text_field :longitude, required: true, class: "form-control"
+
+  .form-group
+    = f.label :owner_name, "Owner's Name"
+    = f.text_field :owner_name, required: true, class: "form-control"
+
+  .form-group
+    = f.label :owner_mobile, "Owner's Mobile No."
+    = f.text_field :owner_mobile, required: true, class: "form-control"
+
+  .form-group
+    = f.label :owner_email, "Owner's Email"
+    = f.text_field :owner_email, required: true, class: "form-control"
+
+  .form-group
+    = f.submit "Submit", class: "btn btn-primary"
