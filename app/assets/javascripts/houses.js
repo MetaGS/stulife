@@ -5,7 +5,8 @@ $(document).ready(function() {
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: centerCoordinate(),
-        zoom: zoomLevel()
+        zoom: zoomLevel(),
+        scrollwheel: false
     });
 
     var infowindow = new google.maps.InfoWindow({

@@ -41,7 +41,8 @@
 .container
   .row
     .col-md-6
-      #map
+      .google-map-borders
+        #map.google-map.mt-none.mb-none
     .col-md-6
       #units-list.panel-group.without-bg
         - @units.each do |unit|
@@ -56,7 +57,7 @@
                       %h4= unit.unit_type
                     %p #{unit.size} sqft
                   .col-xs-3
-                    %h5.mt-md= number_to_currency unit.price, unit: "MYR ", precision: 0
+                    %h4.mt-md= number_to_currency unit.price, unit: "MYR ", precision: 0
             .accordion-body.collapse{id: "unit_#{unit.id}", "aria-expanded" => "false"}
               .panel-body
                 .row

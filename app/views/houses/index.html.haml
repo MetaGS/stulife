@@ -6,8 +6,10 @@
 
 .container
   %h1 Houses
-
-  #map
+  .row
+    .col-md-12
+      .google-map-borders
+        #map.google-map.mt-none.mb-none
 
 = content_for :javascript do
   = javascript_include_tag "houses"
