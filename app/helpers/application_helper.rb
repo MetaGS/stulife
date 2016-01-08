@@ -12,7 +12,8 @@ module ApplicationHelper
 
   def editable_section(section_id, classes = nil)
     javascript_include_tag 'tinymce'
-    if current_admin
+
+    if current_admin && params.has_key?("edit")
       content_tag :form do
         content_tag :div, id: section_id, class: classes.to_s + "editable" do
           PageRegion.find_by_country_id_and_name(@country.id, section_id).content.try(:html_safe)
@@ -20,7 +21,7 @@ module ApplicationHelper
       end
     else
       content_tag :div, id: section_id, class: classes do
-        PageRegion.find_by_country_id_and_name(@country.id, section_id).content.try(:html_safe)
+        (PageRegion.find_by_country_id_and_name(@country.id, section_id).content % ALLOWED_CODES).try(:html_safe)
       end
     end
   end
