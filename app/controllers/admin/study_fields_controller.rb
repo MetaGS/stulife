@@ -34,7 +34,7 @@ class Admin::StudyFieldsController < Admin::AdminController
   def edit_field_levels
     @country = Country.first
     @study_field = StudyField.friendly.find(params[:id])
-    @field_levels = @study_field.field_levels
+    @field_levels = @study_field.field_levels.sort_by { |x| x.study_level.name }
   end
 
   def update_field_levels
