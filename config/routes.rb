@@ -12,6 +12,12 @@ Rails.application.routes.draw do
     scope ":country", country: /malaysia/ do
       root to: "pages#home"
 
+      resources :study_fields do
+        member do
+          get 'field_levels'
+        end
+      end
+
       resources :universities, only: [:index, :show] do
         resources :courses, only: [:index, :show]
       end

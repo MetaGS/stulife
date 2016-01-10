@@ -1,0 +1,10 @@
+#field-levels-accordion.panel-group.panel-group-quaternary
+  - @field_levels.each_with_index do |field_level, index|
+    .panel.panel-default
+      .panel-heading
+        .panel-title
+          %a.accordion-toggle.collapsed{"data-parent" => "#field-levels-accordion", "data-toggle" => "collapse", href: "#collapse#{index}"}
+            = field_level.study_level.name
+      .accordion-body.collapse{id: "collapse#{index}"}
+        .panel-body
+          = field_level.content.try(:html_safe)

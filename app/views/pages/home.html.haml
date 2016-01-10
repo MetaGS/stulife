@@ -9,7 +9,9 @@
 
       .row
         .col-md-4.col-md-offset-4.text-center
-          = select_tag :study_field, options_for_select(StudyField.all.sort_by { |x| x.name }.collect{ |x| x.name}), prompt: "Select a Field of Study", id: "study-field-search"
+          = select_tag :study_field, options_for_select(StudyField.all.sort_by { |x| x.name }.collect{ |x| [x.name, x.slug]}), prompt: "Select a Field of Study", id: "study-field-search"
+
+      #field-levels-wrapper.mt-xl
 
       -#.content-grid.content-grid-dashed.mt-xlg.mb-lg
         - @study_fields.in_groups_of(6).each do |group|
@@ -24,6 +26,5 @@
 = content_for :javascript do
   :javascript
     $('#study-field-search').selectize({
-      create: true,
-      sortField: 'text'
+      onItemAdd: function(value) { $.get("/#{@country.slug}/study_fields/" + value + "/field_levels"); }
     });

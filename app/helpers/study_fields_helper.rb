@@ -1,0 +1,2 @@
+module StudyFieldsHelper
+end
