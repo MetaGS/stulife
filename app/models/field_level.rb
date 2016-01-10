@@ -19,6 +19,8 @@ class FieldLevel < ActiveRecord::Base
 
   validates_presence_of :country_id, :study_field_id, :study_level_id
 
+  default_scope { order(:study_level_id) }
+
   def self.generate
     Country.all.each do |country|
       StudyField.all.each do |study_field|
