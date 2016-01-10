@@ -18,4 +18,15 @@ class FieldLevel < ActiveRecord::Base
   belongs_to :study_level
 
   validates_presence_of :country_id, :study_field_id, :study_level_id
+
+  def self.generate
+    Country.all.each do |country|
+      StudyField.all.each do |study_field|
+        StudyLevel.all.each do |study_level|
+          field_level = where(country: country, study_field: study_field, study_level: study_level)
+          create(country: country, study_field: study_field, study_level: study_level) if field_level.blank?
+        end
+      end
+    end
+  end
 end
