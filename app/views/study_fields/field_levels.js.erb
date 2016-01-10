@@ -1,1 +1,5 @@
-$('#field-levels-wrapper').fadeOut().empty().append("<%= escape_javascript(render 'study_fields/field_levels')%>").fadeIn();
+if ($('#field-levels-wrapper').is(':empty')) {
+    $('#field-levels-wrapper').append("<%= escape_javascript(render 'study_fields/field_levels')%>").fadeIn();
+} else {
+    $('#field-levels-wrapper').fadeOut().empty().append("<%= escape_javascript(render 'study_fields/field_levels')%>").fadeIn();
+}
