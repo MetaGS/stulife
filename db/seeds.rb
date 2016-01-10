@@ -8,3 +8,6 @@ University.create(name: "Taylor's University", slug: "taylor-university", countr
 
 PageRegion.create(country: Country.first, controller: "pages", action: "home", name: "about-country", content: "Malaysia")
 PageRegion.create(country: Country.first, controller: "universities", action: "index", name: "how-to-come", content: "How to Come")
+
+StudyLevel.import
+StudyField.import

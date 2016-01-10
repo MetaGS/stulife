@@ -1,0 +1,11 @@
+%h1 Edit #{@study_field.name} Description by Education Level
+
+= form_tag update_field_levels_admin_study_field_path(@study_field), method: :put do
+  - @field_levels.each do |field_level|
+    = fields_for "field_levels[]", field_level do |f|
+      .form-group
+        %h2= field_level.study_level.name
+        = f.text_area :content, class: "tinymce"
+
+  .form-group
+    = submit_tag "Submit", class: "btn btn-primary"

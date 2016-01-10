@@ -31,6 +31,22 @@ class Admin::StudyFieldsController < Admin::AdminController
     end
   end
 
+  def edit_field_levels
+    @country = Country.first
+    @study_field = StudyField.friendly.find(params[:id])
+    @field_levels = @study_field.field_levels
+  end
+
+  def update_field_levels
+    @country = Country.first
+    @study_field = StudyField.friendly.find(params[:id])
+    params[:field_levels].each do |k,v|
+      field_level = FieldLevel.find(k)
+      field_level.update_attributes(content: v[:content])
+    end
+    redirect_to admin_study_fields_path, notice: "#{@study_field.name}'s description by education level updated succesfully."
+  end
+
   private
 
   def study_field_params

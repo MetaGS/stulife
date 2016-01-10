@@ -9,6 +9,7 @@
       %th ID
       %th Name
       %th
+      %th
 
   %tbody
     - @study_fields.each do |field|
@@ -16,3 +17,4 @@
         %td= field.id
         %td= field.name
         %td= link_to "Edit", edit_admin_study_field_path(field), class: "btn btn-default"
+        %td= link_to "Field Levels", edit_field_levels_admin_study_field_path(field), class: "btn btn-default"

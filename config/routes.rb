@@ -33,7 +33,12 @@ Rails.application.routes.draw do
       post '/save_page_region', to: 'admin#save_page_region'
 
       resources :countries
-      resources :study_fields
+      resources :study_fields do
+        member do
+          get 'edit_field_levels'
+          put 'update_field_levels'
+        end
+      end
       resources :universities do
         resources :courses
       end
