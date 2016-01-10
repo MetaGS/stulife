@@ -24,7 +24,7 @@ class StudyField < ActiveRecord::Base
   after_create :create_field_levels
 
   def self.import
-    fields = "Pre-University Programme, Accounting & Finance, Agriculture, Architecture, Arts & Design, Business Management & Administration, Computing & IT, Communication & Broadcasting, Economics, Education, Engineering, Environmental, Finance*, Hospitality & Tourism, Humanities, Languages, Law, Manufacturing, Marketing & Sales, Mathematics & Statistics, Media, Medical Diagnostic & Treatment, Medicine & Healthcare, Occupational Health, Personal Services, Science, Social Sciences, Social Services, Transport, Veterinary"
+    fields = "Pre-University Programme,Accounting & Finance,Agriculture,Architecture,Arts & Design,Business Management & Administration,Computing & IT,Communication & Broadcasting,Economics,Education,Engineering,Environmental,Finance*,Hospitality & Tourism,Humanities,Languages,Law,Manufacturing,Marketing & Sales,Mathematics & Statistics,Media,Medical Diagnostic & Treatment,Medicine & Healthcare,Occupational Health,Personal Services,Science,Social Sciences,Social Services,Transport,Veterinary"
     array = fields.split(",")
 
     array.each do |field|
