@@ -20,7 +20,7 @@
 
 class HouseUnit < ActiveRecord::Base
   belongs_to :house
-  has_many :images, as: :imageable
+  has_many :images, as: :imageable, dependent: :destroy
 
   validates_presence_of :unit_type, :size, :price, :owner_name, :owner_mobile, :security_deposit_months, :utilities_deposit_months
 

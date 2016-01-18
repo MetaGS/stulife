@@ -18,8 +18,8 @@
 
 class House < ActiveRecord::Base
   belongs_to :country
-  has_many :house_units
-  has_many :images, as: :imageable
+  has_many :house_units, dependent: :destroy
+  has_many :images, as: :imageable, dependent: :destroy
 
   extend FriendlyId
   friendly_id :name, use: :slugged
