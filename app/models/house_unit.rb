@@ -24,7 +24,7 @@ class HouseUnit < ActiveRecord::Base
 
   validates_presence_of :unit_type, :size, :price, :owner_name, :owner_mobile, :security_deposit_months, :utilities_deposit_months
 
-  UNIT_TYPE = ["House", "Master Room", "2nd Room", "3rd Room", "4th Room"]
+  UNIT_TYPE = ["Whole Unit", "House", "Master Room", "2nd Room", "3rd Room", "4th Room"]
 
   def featured_image
     Image.find_by_imageable_type_and_imageable_id_and_id('HouseUnit', id, self[:featured_image_id]) || images.first
