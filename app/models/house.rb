@@ -26,7 +26,7 @@ class House < ActiveRecord::Base
 
   validates_presence_of :country_id, :name, :address, :property_type, :longitude, :latitude
 
-  PROPERTY_TYPES = ["Condominium", "Apartment", "Single Storey", "Double Storey", "Townhouse"]
+  PROPERTY_TYPES = ["Condominium", "Studio", "Apartment", "Single Storey", "Double Storey", "Townhouse"]
 
   def featured_image
     Image.find_by_imageable_type_and_imageable_id_and_id('House', id, self[:featured_image_id]) || images.first
