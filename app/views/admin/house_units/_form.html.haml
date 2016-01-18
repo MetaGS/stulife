@@ -3,7 +3,7 @@
 
   .form-group
     = f.label :unit_type
-    = f.select :unit_type, options_for_select(HouseUnit::UNIT_TYPE), {prompt: "Select a unit type"}, class: "form-control"
+    = f.select :unit_type, options_for_select(HouseUnit::UNIT_TYPE, @unit.unit_type), {prompt: "Select a unit type"}, class: "form-control"
 
   .form-group
     = f.label :size, "Size - Square Feet"
