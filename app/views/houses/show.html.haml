@@ -39,6 +39,32 @@
         %h1= @house.name
 
 .container
+  = form_tag houses_path, method: :get, autocomplete: "off" do
+    .row.mt-md
+      .col-md-10
+        .row
+          .col-md-5.mb-md
+            .input-group.mb-md
+              %span.input-group-addon.btn-default
+                %i.fa.fa-university
+              = select_tag :university, options_for_select(University.all.collect{|x| x.name}, params[:university]), prompt: "-- Select University --", class: "form-control"
+          .col-md-3
+            .input-group.mb-md
+              %span.input-group-addon.btn-default
+                %i.fa.fa-car
+              = text_field_tag :distance, params[:distance], placeholder: "within distance (KM)", class: "form-control"
+          .col-md-2
+            .input-group.mb-md
+              %span.input-group-addon.btn-default $
+              = text_field_tag :min_price, params[:min_price], placeholder: "Min Price", class: "form-control"
+          .col-md-2
+            .input-group.mb-md
+              %span.input-group-addon.btn-default $
+              = text_field_tag :max_price, params[:max_price], placeholder: "Max Price", class: "form-control"
+      .col-md-2.text-center
+        = submit_tag "Search", class: "btn btn-primary"
+
+.container
   .row
     .col-md-6
       .google-map-borders

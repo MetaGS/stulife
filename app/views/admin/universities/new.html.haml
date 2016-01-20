@@ -13,7 +13,15 @@
 
   .form-group
     = f.label :country_id
-    = f.select :country_id, options_for_select(Country.all.map{ |x| [x.name, x.id] }), {prompt: "Select a country"}, class: "form-control"
+    = f.select :country_id, options_for_select(Country.all.map{ |x| [x.name, x.id] }), {required: true, prompt: "Select a country"}, class: "form-control"
+
+  .form-group
+    = f.label :latitude
+    = f.text_field :latitude, required: true, class: "form-control"
+
+  .form-group
+    = f.label :longitude
+    = f.text_field :longitude, required: true, class: "form-control"
 
   .form-group
     = f.label :description

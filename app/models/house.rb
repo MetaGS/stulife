@@ -17,6 +17,12 @@
 #
 
 class House < ActiveRecord::Base
+  acts_as_mappable :default_units => :kms,
+                   :default_formula => :flat,
+                   :distance_field_name => :distance,
+                   :lat_column_name => :latitude,
+                   :lng_column_name => :longitude
+
   belongs_to :country
   has_many :house_units, dependent: :destroy
   has_many :images, as: :imageable, dependent: :destroy
@@ -32,8 +38,12 @@ class House < ActiveRecord::Base
     Image.find_by_imageable_type_and_imageable_id_and_id('House', id, self[:featured_image_id]) || images.first
   end
 
+  def random_image
+    Image.where(imageable_type: 'HouseUnit', imageable_id: house_units.pluck(:id)).order("RANDOM()").limit(1).last
+  end
+
   def self.available_houses
-    all.select{ |x| x.available_house_units.count > 0 }
+    all.joins(:house_units).distinct
   end
 
   def available_house_units

@@ -13,12 +13,27 @@ function initMap() {
         content: ""
     });
 
-    $.getJSON('/malaysia/houses.json', function( data ) {
+    $.getJSON('/malaysia/houses.json?university=' + getUrlParameter('university') + '&distance=' + getUrlParameter('distance'), function( data ) {
         $.each( data, function( key, val ) {
             var latLng = new google.maps.LatLng(val.lat, val.lng);
             var marker = new google.maps.Marker({
                 position: latLng,
                 map: map,
+                label: val.label,
+                title: val.title
+            });
+
+            bindInfoWindow(marker, map, infowindow, val.description);
+        });
+    });
+
+    $.getJSON('/malaysia/universities.json', function( data ) {
+        $.each( data, function( key, val ) {
+            var latLng = new google.maps.LatLng(val.lat, val.lng);
+            var marker = new google.maps.Marker({
+                position: latLng,
+                map: map,
+                icon: val.icon,
                 title: val.title
             });
 
@@ -61,7 +76,7 @@ function centerCoordinate() {
 
 function zoomLevel() {
     if (getUrlParameter('lat') && getUrlParameter('lng')) {
-        return 15;
+        return 13;
     } else {
         return 12;
     }

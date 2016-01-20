@@ -1,15 +1,60 @@
-:css
-  #map {
-    height: 500px;
-    width: 100%;
-  }
+%section#house-header{class: "page-header page-header-custom-background parallax", "data-stellar-background-ratio" => "0.5"}
+  .container
+    .row
+      .col-md-12
+        %h1 Houses
+    = form_tag houses_path, method: :get, autocomplete: "off" do
+      .row.mt-md
+        .col-md-10
+          .row
+            .col-md-5.mb-md
+              .input-group.mb-md
+                %span.input-group-addon.btn-default
+                  %i.fa.fa-university
+                = select_tag :university, options_for_select(University.all.collect{|x| x.name}, params[:university]), prompt: "-- Select University --", class: "form-control"
+            .col-md-3
+              .input-group.mb-md
+                %span.input-group-addon.btn-default
+                  %i.fa.fa-car
+                = text_field_tag :distance, params[:distance], placeholder: "within distance (KM)", class: "form-control"
+            .col-md-2
+              .input-group.mb-md
+                %span.input-group-addon.btn-default $
+                = text_field_tag :min_price, params[:min_price], placeholder: "Min Price", class: "form-control"
+            .col-md-2
+              .input-group.mb-md
+                %span.input-group-addon.btn-default $
+                = text_field_tag :max_price, params[:max_price], placeholder: "Max Price", class: "form-control"
+        .col-md-2.text-center
+          = submit_tag "Search", class: "btn btn-primary"
 
 .container
-  %h1 Houses
   .row
-    .col-md-12
+    %div{class: (@houses.blank? || @university.blank? ? "col-md-12" : "col-md-6")}
       .google-map-borders
         #map.google-map.mt-none.mb-none
+    - unless @houses.blank? || @university.blank?
+      .col-md-6
+        #houses-list.panel-group.without-bg
+          - @houses.sort_by{|x| x.distance_from(@university)}.each do |house|
+            .panel.panel-default
+              .panel-heading
+                %a{href: house_path(house, lat: house.latitude, lng: house.longitude)}
+                  .row
+                    .col-xs-3.house-image.text-center
+                      = image_tag house.random_image.image.url(:thumb), class: "img-responsive"
+                    .col-xs-9.text-center
+                      .row
+                        .col-xs-12
+                          .heading.heading-border.heading-middle-border.heading-middle-border-center.mb-xs.mt-sm
+                            %h4= house.name
+                        .col-xs-12
+                          %h5= house.property_type
+                        .col-xs-12
+                          #{number_with_precision house.distance_from(@university), precision: 2} km away from #{@university.name}
+                        .col-xs-12
+                          #{pluralize(house.house_units.count, "Listing")} from #{number_to_currency(house.min_price, unit: "MYR", precision: 0)} to #{number_to_currency(house.max_price, unit: "MYR", precision: 0)}
+
 
 = content_for :javascript do
   = javascript_include_tag "houses"
